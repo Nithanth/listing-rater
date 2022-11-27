@@ -1,22 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import { Container } from '@mui/system';
+import { TextField } from '@mui/material';
+import FileUploadComponent from './components/fileUpload.component';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <h1>AirBNB Listing Rater</h1>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Enter your description
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Container maxWidth="sm">
+          <TextField
+            id="full-width-text-field"
+            label="Description"
+            type="search"
+            variant="filled"
+            size='large'
+            multiline
+            rows={7}
+            maxRows={10}
+            fullWidth
+          />
+        </Container>
+        <p>
+          Upload your images
+        </p>
+        <div className="App container mt-5">
+        <FileUploadComponent/>
+        </div>
       </header>
     </div>
   );
