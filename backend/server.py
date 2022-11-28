@@ -1,8 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_wtf import FlaskForm
 from wtforms import FileField, SubmitField
 from werkzeug.utils import secure_filename
 import os
+from wtforms.validators import InputRequired
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecretkey'
@@ -15,6 +16,8 @@ class UploadFileForm(FlaskForm):
 # home API route
 @app.route("/home",methods=['GET',"POST"])
 def home():
+    description = request.form.get('full-width-text-field')
+
     form = UploadFileForm()
     if form.validate_on_submit():
         file = form.file.data # First grab the file
