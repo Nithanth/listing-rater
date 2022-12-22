@@ -11,7 +11,8 @@ const FileUploadComponent = () => {
         console.log(status, meta, file)
     }
     const onSubmit = (files, allFiles) => {
-        allFiles.forEach(f => f.remove())
+        
+        // allFiles.forEach(f => f.remove())
     }
     const getFilesFromEvent = e => {
         console.log('hit')
