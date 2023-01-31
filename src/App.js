@@ -1,27 +1,38 @@
 import './App.css';
 import { Container } from '@mui/system';
 import { TextField, Button } from '@mui/material';
-import FileUploadComponent from './components/imageUpload';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import Dropzone from './components/Dropzone/dropzone';
 
 function App() {
-  // const [images, setImages] = useState(false);
   const [description, setDescription] = useState('');
-  const [images,setImages] = useState([])
+  const [images, setImages] = useState([]);
+
+  const onDrop = useCallback(acceptedFiles => {
+    acceptedFiles.map(file => {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        setImages(prevState => [
+          ...prevState,
+          { id: 'a', src: e.target.result }
+        ]);
+      };
+      reader.readAsDataURL(file);
+      return file;
+    });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const info = {description};
-    
     fetch('/add', {
       method: 'post',
-      headers: {"Content-Type":"application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        description:description,
-        images:
+        description: description,
+        images: images
       })
     }).then(() => {
-      console.log("new description added")
+      console.log("new object posted")
     })
   }
 
@@ -29,34 +40,38 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>AirBNB Listing Rater</h1>
-        <div>
+        <div className="App">
           <p>
-            Enter your description
+            Enter description
           </p>
-          <Container maxWidth="sm">
+          <Container >
             <TextField
               id="full-width-text-field"
-              label="Description"
               type="search"
               variant="filled"
-              size='large'
               multiline
-              rows={7}
-              fullWidth
+              rows={6}
+              maxWidth='lg'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              style={{ width: 600 }}
             />
           </Container>
-          <p>
-            Upload your images
-          </p>
-          <p></p>
-          <div className="App container mt-5">
-            <FileUploadComponent id='uploaded-files' />
-          </div>
-          <Button variant="contained" onClick={handleSubmit}>Submit</Button>
         </div>
-        <p>{description}</p>
+        <div className="App">
+          <p>
+            Upload images
+          </p>
+          <p>
+          </p>
+          <div className="App container mt-5" style={{ width: 600 }}>
+            <Dropzone onDrop={onDrop}>
+            </Dropzone>
+          </div>
+          <p>
+          </p>
+          <Button variant="contained" onClick={handleSubmit}>Rate my listing</Button>
+        </div>
       </header>
     </div>
   );

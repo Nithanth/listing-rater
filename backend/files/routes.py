@@ -1,6 +1,8 @@
 from flask import Flask, request
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app)
 
 @app.route("/home")
 def home():
@@ -9,13 +11,11 @@ def home():
 @app.route("/add",methods=["POST","GET"])
 def add_info():
     description = request.json['description']
+    images = request.json['images']
     print(description)
+    print(images)
     return description
-
-# @app.route("/add", methods=["POST"], strict_slashes=False)
-# def add_articles():
-#     title = request.json['title']
-#     body = request.json['body']
 
 if __name__ == "__name__":
     app.run()
+    
