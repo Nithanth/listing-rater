@@ -68,6 +68,9 @@ function App() {
             <Dropzone onDrop={onDrop}>
             </Dropzone>
           </div>
+          <aside>
+            <p style={{ fontSize: 23 }}> {images.length} Files Uploaded </p>
+          </aside>
           <p>
           </p>
           <Button variant="contained" onClick={handleSubmit}>Rate my listing</Button>

@@ -1,40 +1,45 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React from 'react';
 import { useDropzone } from 'react-dropzone';
+import styled from 'styled-components';
 
-const baseStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '20px',
-    borderWidth: 2,
-    borderRadius: 2,
-    borderColor: '#eeeeee',
-    borderStyle: 'dashed',
-    backgroundColor: '#fafafa',
-    color: '#bdbdbd',
-    transition: 'border .3s ease-in-out'
-};
+const getColor = (props) => {
+    if (props.isDragAccept) {
+        return '#00e676';
+    }
+    if (props.isDragReject) {
+        return '#ff1744';
+    }
+    if (props.isFocused) {
+        return '#2196f3';
+    }
+    return '#eeeeee';
+}
 
-const activeStyle = {
-    borderColor: '#2196f3'
-};
+const Container = styled.div`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-width: 2px;
+    border-radius: 2px;
+    border-color: ${props => getColor(props)};
+    border-style: dashed;
+    background-color: almond;
+    color: black;
+    outline: none;
+    transition: border .24s ease-in-out;
+  `;
 
-const acceptStyle = {
-    borderColor: '#00e676'
-};
-
-const rejectStyle = {
-    borderColor: '#ff1744'
-};
 
 const Dropzone = ({ onDrop, accept }) => {
     // Initializing useDropzone hooks with options
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    const { getRootProps, getInputProps, isDragActive, isFocused, isDragReject, isDragAccept } = useDropzone({
         onDrop,
-        accept
+        accept: { 'image/*': [] }
     });
     return (
-        <div {...getRootProps()}>
+        <Container {...getRootProps(isFocused, isDragAccept, isDragReject)}>
             <input className="dropzone-input" {...getInputProps()} />
             <div className="text-center">
                 {isDragActive ? (
@@ -45,7 +50,7 @@ const Dropzone = ({ onDrop, accept }) => {
                     </p>
                 )}
             </div>
-        </div>
+        </Container>
     );
 };
 

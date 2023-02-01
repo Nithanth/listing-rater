@@ -1,7 +1,7 @@
 from checks import check_amenities
 
 def checkForNearbyAmenities(description):
-    result = amenitycheck.amenitiesNearby(description)
+    result = check_amenities.amenitiesNearby(description)
 
     if result[0] == False:
         # No nearby amenities found
