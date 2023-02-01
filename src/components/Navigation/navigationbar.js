@@ -8,8 +8,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import { Stack } from '@mui/material';
 import CottageOutlinedIcon from '@mui/icons-material/CottageOutlined';
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 const pages = ['Home', 'About', 'Resources'];
+const links = ['', '/about', '/resources'];
 
 const bar_theme = createTheme({
     status: {
@@ -50,13 +53,18 @@ export default function ButtonAppBar() {
                             </IconButton>
                         </Typography>
                         <Stack direction='row' spacing={1}>
-                            {pages.map((page) => (
-                                <MenuItem
-                                    key={page}
-                                    textAlign="right"
-                                >
-                                    <Typography textAlign="center" variant="h6">{page}</Typography>
-                                </MenuItem>
+                            {pages.map((page, index) => (
+                                <Link to={links[index]} style={{ textDecoration: 'none' }}>
+                                    <MenuItem
+                                        key={page}
+                                        textAlign="right"
+                                    >
+                                        <Button key={page} sx={{ color: '#fff' }}>
+                                            {page}
+                                        </Button>
+                                    </MenuItem>
+                                </Link>
+
                             ))}
                         </Stack>
                     </Toolbar>
