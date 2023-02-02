@@ -17,7 +17,7 @@ import {Link as RouterLink} from 'react-router-dom';
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
-      <Link color="inherit" href="https://github.com/shahrishabh7">
+      <Link color="inherit" href="https://github.com/shahrishabh7" target="_blank">
         GitHub
       </Link>{' '}
     </Typography>
@@ -75,7 +75,7 @@ export default function Album() {
             </Container>
             <Container maxWidth="me">
               <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                Hosts have spent years finetuning the best SEO practices
+                Hosts have spent years procuring the best SEO practices
               </Typography>
               {'\n'}
               <Typography variant="h5" align="center" color="text.secondary" paragraph>
