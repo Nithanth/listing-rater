@@ -10,7 +10,7 @@ from collections import Counter
 
 # Scan description for proper nouns to see if host listed restaurants / attractions in the area and rough distance estimates
 # If can't find distances, add a recommendation to user
-def find_nearby_amenities(description):
+def find_nearby_attractions(description):
 
     # look around current word index within 10 words for any quantitative indication of distances
     # check for "minute", "min", "hour", "hour", "hr" "mi", "miles"

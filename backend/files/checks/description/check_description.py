@@ -1,5 +1,5 @@
 import language_tool_python
-import check_amenities
+import check_attractions,check_amenities, tokenize_description
 
 # Things to do 
 # move readability check here / make sure it works
@@ -11,6 +11,10 @@ class descriptionEvaluator:
 
     def add_description(self,description):
         self.description = description
+
+    def tokenize_description(self):
+        tokens = tokenize_description.tokenize_description(self.description)
+        return tokens
 
     def clear_description(self):
         self.description = ''
@@ -27,7 +31,12 @@ class descriptionEvaluator:
     def nearby_attractions_check(self):
         # if result[0] is True, user was specific mentioned amenities
         # if result[1] is True, that means user informed guests of distances to amenities well
-        return check_amenities.find_nearby_amenities(self.description)
+        return check_amenities.find_nearby_attractions(self.description)
+
+    # Iterate description and check for amenities present
+    # Return list of amenities
+    def amenities_check(self):
+        pass
     
 def test_description_evaluator():
     description = """
