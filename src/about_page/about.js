@@ -1,13 +1,12 @@
-import Album from "./album";
-import { Container } from '@mui/material';
+import Album from './album'
+import { Container } from '@mui/material'
 
-function About() {
-  
-    return (
-      <Container maxWidth='false'>
+function About () {
+  return (
+    <Container maxWidth='false'>
       <Album></Album>
-      </Container>
-    );
-  }
-  
-  export default About;
+    </Container>
+  )
+}
+
+export default About
