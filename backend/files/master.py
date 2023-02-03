@@ -1,5 +1,5 @@
 from checks import check_amenities
-
+from checks.check_images import imageEvaluator
 def checkForNearbyAmenities(description):
     result = check_amenities.amenitiesNearby(description)
 
@@ -20,6 +20,12 @@ def checkForNearbyAmenities(description):
     # case 1: good! proper nouns identified and proximity (time or distance) mentioned
     # case 2: you can be more descriptive! proper nouns identified, but can't identify any quantitative indication of proximity
     # case 3: bad! not enough proper nouns identified
+
+def checkImages(payload):
+    images = payload["images"]
+    evaluator = imageEvaluator(images)
+    
+    pass
 
 description = """
 Stylish, modern, and chic, two-bedroom, two bath home located on the border of the SOMA, Mission, and Hayes Valley district!
