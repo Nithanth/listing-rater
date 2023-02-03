@@ -14,7 +14,7 @@ def add_info():
     images = request.json['images']
     print(description)
     print(images)
-    print(type(images))
+    print(type(images[0]['src']))
     return description
 
 if __name__ == "__name__":
