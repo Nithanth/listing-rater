@@ -1,6 +1,5 @@
 from flask import Flask, request
 from flask_cors import CORS
-import master 
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -15,6 +14,7 @@ def add_info():
     images = request.json['images']
     
     return description
+
 
 if __name__ == "__name__":
     app.run()
