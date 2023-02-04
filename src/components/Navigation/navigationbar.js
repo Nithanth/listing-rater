@@ -11,8 +11,8 @@ import CottageOutlinedIcon from '@mui/icons-material/CottageOutlined';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
-const pages = ['Home', 'About', 'Resources'];
-const links = ['', '/about', '/resources'];
+const pages = ['Home', 'About','Generate', 'Resources'];
+const links = ['', '/about','/generate', '/resources'];
 
 const bar_theme = createTheme({
     status: {
