@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask_cors import CORS
-import master 
+
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -15,6 +15,13 @@ def add_info():
     images = request.json['images']
     
     return description
+
+@app.route("/generate",methods=["POST"])
+def generate_description():
+    address = request.json['address']
+    print(address)
+    print(type(address))
+    return address
 
 
 if __name__ == "__name__":

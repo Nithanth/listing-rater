@@ -13,4 +13,4 @@ def convert_image_for_cv(payload):
     decoded = decode_image(payload_str)
     np_array = np.frombuffer(decoded, np.uint8)
     img = cv2.imdecode(np_array, cv2.IMREAD_COLOR) 
-    pass
+    return img
