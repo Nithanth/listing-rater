@@ -5,6 +5,7 @@ import ResponsiveAppBar from './components/Navigation/navigationbar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './home_page/home';
 import About from './about_page/about';
+import Generate from './generate_page/generate';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <div className='content'>
           <Routes>
             <Route exact path='/' element={<Home/>}/>
+            <Route exact path='/generate' element={<Generate/>}/>
             <Route exact path='/about' element={<About/>}/>
           </Routes>
         </div>

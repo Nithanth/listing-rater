@@ -4,7 +4,9 @@ import { TextField, Button } from '@mui/material'
 import { useState, useCallback } from 'react'
 import Dropzone from '../components/Dropzone/dropzone'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
 import logo from './monocle_logo.png'
+import Box from '@mui/material/Box'
 
 const button_theme = createTheme({
   status: {
@@ -64,7 +66,7 @@ function Home () {
         {/* <div class='spin'>
             <img src={logo} className="App-logo"/>
         </div> */}
-        <h1>Monocle</h1>
+        <h1>AirBNB Listing Rater</h1>
         <div className='content'>
           <p>Enter description</p>
           <Container>

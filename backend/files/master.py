@@ -1,4 +1,4 @@
-from checks import check_amenities
+from checks.description import check_amenities
 from checks.image.check_images import imageEvaluator
 import utilities
 
