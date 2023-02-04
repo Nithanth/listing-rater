@@ -1,5 +1,7 @@
 from checks import check_amenities
-from checks.check_images import imageEvaluator
+from checks.image.check_images import imageEvaluator
+import utilities
+
 def checkForNearbyAmenities(description):
     result = check_amenities.amenitiesNearby(description)
 
@@ -23,8 +25,11 @@ def checkForNearbyAmenities(description):
 
 def checkImages(payload):
     images = payload["images"]
+    photobank = []
+    for image in images:
+        photobank.append(utilities.decode_image(image))
     evaluator = imageEvaluator(images)
-    
+
     pass
 
 description = """
