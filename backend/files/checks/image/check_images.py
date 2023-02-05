@@ -114,7 +114,10 @@ class imageEvaluator:
             return "image data not populated"
     
     def brisque_eval(self, image):
-        pass
+        brisque_score = self.brisque_score(image)
+        flag = True if brisque_score > 60 else False
+        return (flag, brisque_score)
+        
 
     def resolution(self, image):
         loaded_image = cv2.imread(image)
@@ -185,6 +188,10 @@ class imageEvaluator:
         return light_percent, dark_percent
     
     def dullness_whiteness_eval(self, image):
+        pass
+    
+    def image_explainability(self, image):
+        
         pass
         
         
