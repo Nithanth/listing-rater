@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './home_page/home';
 import About from './about_page/about';
 import Generate from './generate_page/generate';
+import Results from './results_page/results';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route exact path='/' element={<Home/>}/>
             <Route exact path='/generate' element={<Generate/>}/>
+            <Route exact path='/results' element={<Results/>}/>
             <Route exact path='/about' element={<About/>}/>
           </Routes>
         </div>

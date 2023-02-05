@@ -1,0 +1,42 @@
+.Results {
+    text-align: center;
+  }
+  
+  .Results-header {
+    background-color: #e4cead;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: #2d3033;
+  }
+  
+  .Results-link {
+    color: #61dafb;
+  }
+  
+  .spin {
+    width: 100px;
+    height: 100px;
+    animation: spin 3s linear infinite;
+    animation-delay: calc(var(--delay) * -1s);
+    transform-origin: 100px 100px;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .App-form {
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
+  }

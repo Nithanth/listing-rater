@@ -7,6 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import logo from './monocle_logo.png'
 import Box from '@mui/material/Box'
+import {Link} from 'react-router-dom'
 
 const button_theme = createTheme({
   status: {
@@ -96,14 +97,16 @@ function Home () {
         </div>
         <div>
           <ThemeProvider theme={button_theme}>
-            <Button
-              variant='outlined'
-              onClick={handleSubmit}
-              size='large'
-              sx={{ border: 1.5 }}
-            >
-              Rate my listing
-            </Button>
+            <Link to={('/results')} style={{ textDecoration: 'none' }}>
+              <Button
+                variant='outlined'
+                // onClick={handleSubmit}
+                size='large'
+                sx={{ border: 1.5 }}
+              >
+                Rate my listing
+              </Button>
+            </Link>
           </ThemeProvider>
         </div>
       </header>
