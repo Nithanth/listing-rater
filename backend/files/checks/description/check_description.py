@@ -36,7 +36,7 @@ class descriptionEvaluator:
     # Iterate description and check for amenities present
     # Return list of amenities
     def amenities_check(self):
-        pass
+        tokens = self.tokenize_description(self.description)
     
 def test_description_evaluator():
     description = """

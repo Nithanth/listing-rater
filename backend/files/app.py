@@ -1,13 +1,8 @@
 from flask import Flask, request
 from flask_cors import CORS
 
-
 app = Flask(__name__)
 cors = CORS(app)
-
-@app.route("/home")
-def home():
-    return "Hello! This is the main page"
 
 @app.route("/add",methods=["POST"])
 def add_info():
