@@ -7,6 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
+import Card from './card'
 
 const button_theme = createTheme({
   status: {
@@ -28,6 +29,7 @@ const button_theme = createTheme({
   }
 })
 
+const link = "http://www.lisascreativedesigns.com/wp-content/uploads/2014/05/Staged-Living-Room-Before-3-600x397.jpg"
 function Results () {
   return (
     <div className='Results'>
@@ -112,8 +114,12 @@ function Results () {
               sx={{ pt: 4 }}
               direction='row'
               spacing={2}
-              justifyContent='center'
-            ></Stack>
+              justifyContent='left'
+            >
+              <Card
+              image = {link}
+              ></Card>
+            </Stack>
           </Container>
         </Box>
       </header>
