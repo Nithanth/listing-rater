@@ -6,7 +6,7 @@ import Dropzone from '../components/Dropzone/dropzone'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
-import Stack from '@mui/material/Stack'
+import Grid from '@mui/material/Grid'
 import Card from './card'
 
 const button_theme = createTheme({
@@ -29,7 +29,15 @@ const button_theme = createTheme({
   }
 })
 
-const link = "http://www.lisascreativedesigns.com/wp-content/uploads/2014/05/Staged-Living-Room-Before-3-600x397.jpg"
+const cards = {
+  idx: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  links: [
+    'http://www.lisascreativedesigns.com/wp-content/uploads/2014/05/Staged-Living-Room-Before-3-600x397.jpg',
+    'http://www.lisascreativedesigns.com/wp-content/uploads/2014/05/Staged-Living-Room-Before-3-600x397.jpg',
+    'http://www.lisascreativedesigns.com/wp-content/uploads/2014/05/Staged-Living-Room-Before-3-600x397.jpg'
+  ]
+}
+
 function Results () {
   return (
     <div className='Results'>
@@ -110,16 +118,13 @@ function Results () {
             >
               The following images were flagged with issues:
             </Typography>
-            <Stack
-              sx={{ pt: 4 }}
-              direction='row'
-              spacing={2}
-              justifyContent='left'
-            >
-              <Card
-              image = {link}
-              ></Card>
-            </Stack>
+            <Box>
+              {cards.idx?.map(card => (
+                <Grid spacing={2} item key={card} sx={{ pt: 2 }}>
+                  <Card image={cards.links[card]}></Card>
+                </Grid>
+              ))}
+            </Box>
           </Container>
         </Box>
       </header>

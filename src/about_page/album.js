@@ -190,42 +190,42 @@ export default function Album () {
                 style={{ paddingLeft: 300, paddingRight: 300 }}
               >
                 {cards.idx.map(card => (
-                  <Grid item key={card} xs={12} sm={6} md={4}>
-                    <Card
-                      sx={{
-                        maxWidth: 420,
-                        height: '100%',
-                        display: 'flex',
-                        flexDirection: 'column'
-                      }}
-                    >
-                      <CardMedia
-                        height='500'
-                        component='img'
+                  <Grid item key={card} xs={12}>
+                      <Card
                         sx={{
-                          // 16:9
-                          pt: '0%'
+                          maxWidth: 420,
+                          height: '100%',
+                          display: 'flex',
+                          flexDirection: 'column'
                         }}
-                        image={cards.image_links[card - 1]}
-                        alt='random'
-                      />
-                      <CardContent sx={{ flexGrow: 1 }}>
-                        <Typography gutterBottom variant='h5' component='h2'>
-                          {cards.titles[card - 1]}
-                        </Typography>
-                        <Typography>{cards.locations[card - 1]}</Typography>
-                      </CardContent>
-                      <CardActions>
-                        <Button
-                          size='small'
-                          autoCapitalize='none'
-                          href={cards.listing_links[card - 1]}
-                          target='_blank'
-                        >
-                          View Listing
-                        </Button>
-                      </CardActions>
-                    </Card>
+                      >
+                        <CardMedia
+                          height='500'
+                          component='img'
+                          sx={{
+                            // 16:9
+                            pt: '0%'
+                          }}
+                          image={cards.image_links[card - 1]}
+                          alt='random'
+                        />
+                        <CardContent sx={{ flexGrow: 1 }}>
+                          <Typography gutterBottom variant='h5' component='h2'>
+                            {cards.titles[card - 1]}
+                          </Typography>
+                          <Typography>{cards.locations[card - 1]}</Typography>
+                        </CardContent>
+                        <CardActions>
+                          <Button
+                            size='small'
+                            autoCapitalize='none'
+                            href={cards.listing_links[card - 1]}
+                            target='_blank'
+                          >
+                            View Listing
+                          </Button>
+                        </CardActions>
+                      </Card>
                   </Grid>
                 ))}
               </Grid>

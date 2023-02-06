@@ -8,9 +8,9 @@ import Popper from './popper'
 
 export default function ActionAreaCard ({ image, labels }) {
   return (
-    <Card sx={{ height: 250, width: 200 }}>
+    <Card sx={{ height: 200, width: 200 }}>
       <CardMedia component='img' height='140' image={image} />
-      <CardContent sx={{ pb: 10, pt: 8 }}>
+      <CardContent sx={{ pb: 10, pt: 2, pl: 16 }}>
         <Popper></Popper>
       </CardContent>
     </Card>
