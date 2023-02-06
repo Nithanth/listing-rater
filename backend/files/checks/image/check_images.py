@@ -82,35 +82,37 @@ Resolution - Dimensions of image matched to Airbnb standards
 """
 class imageEvaluator:
     def __init__(self, images):
-        self.image_list = images
         self.brisque_evaluator = BRISQUE(url=False)
         self.image_score_data = defaultdict(dict)
+        for id, image in images:
+            self.image_score_data[id]["image pixels"] = image
     
-    def add_image(self, image):
-        self.image_score_data[image] = {}
+    def add_image(self, image_id, image):
+        self.image_score_data[image_id]["image pixels"] = image
 
-    def remove_image(self, image):
-        if image in self.image_score_data:
-            self.image_score_data.pop(image)
-            return f"{image} has been removed"
+    def remove_image(self, image_id):
+        if image_id in self.image_score_data:
+            self.image_score_data.pop(image_id)
+            return f"{image_id} has been removed"
         else:
-            return f"{image} not found"
+            return f"{image_id} not found"
 
     def clear_data(self):
         self.image_score_data.clear()
     
-    def brisque_score(self, image):
+    def brisque_score(self, image_id, image):
         loaded_image = cv2.imread(image)
         brisque_score = self.brisque_evaluator.score(loaded_image)
-        self.image_score_data[image]["BRISQUE score"] = brisque_score
+        self.image_score_data[image_id]["BRISQUE score"] = brisque_score
 
     def brisque_avg(self):
         avg = 0
         try:
             for image in self.image_score_data:
-                avg += image["BRISQUE score"]
+                avg += self.image_score_data[image]["BRISQUE score"]
             return (avg/len(self.image_score_data))        
         except:
+            print(traceback.format_exc())
             return "image data not populated"
     
     def brisque_eval(self, image):
@@ -119,26 +121,26 @@ class imageEvaluator:
         return (flag, brisque_score)
         
 
-    def resolution(self, image):
+    def resolution(self, image_id, image):
         loaded_image = cv2.imread(image)
         height, width = loaded_image.shape[:2]
-        self.image_score_data[image]["resolution"] = (height, width)
+        self.image_score_data[image_id]["resolution"] = (height, width)
     
     def resolution_eval(self, image):
         pass
 
     # apply the laplacian filter to the image and take the variance in order to determine bluryness score
-    def blurrness_score(self, image):
+    def blurrness_score(self, image_id, image):
         loaded_image = cv2.imread(image)
         loaded_image = cv2.cvtColor(loaded_image, cv2.COLOR_BGR2GRAY)
         score = cv2.Laplacian(loaded_image, cv2.CV_64F).var()
-        self.image_score_data[image]["blurness score"] = score
+        self.image_score_data[image_id]["blurness score"] = score
     
     def blurrness_avg(self):
         avg = 0
         try:
             for image in self.image_score_data:
-                avg += image["blurness score"]
+                avg += self.image_score_data[image]["blurness score"]
             return (avg/len(self.image_score_data))        
         except:
             print(traceback.format_exc())
@@ -147,8 +149,7 @@ class imageEvaluator:
     def blurrrness_eval(self, image):
         pass
     
-    
-    def dullness_whiteness_scores(self, image):
+    def dullness_whiteness_scores(self, image_id, image):
         height, width = image.shape[:2]
         halves = (height//2, width//2)
         image1 = image[0:halves[0], 0:halves[1]]
@@ -185,13 +186,14 @@ class imageEvaluator:
 
         light_percent = (light_percent1 + light_percent2)/2 
         dark_percent = (dark_percent1 + dark_percent2)/2 
-        return light_percent, dark_percent
+        self.image_score_data[image_id]["dullness score"] = dark_percent
+        self.image_score_data[image_id]["whiteness score"] = light_percent
     
     def dullness_whiteness_eval(self, image):
         pass
     
     def image_explainability(self, image):
-        
+
         pass
         
         

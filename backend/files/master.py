@@ -1,6 +1,7 @@
 from checks.description import check_amenities
 from checks.image.check_images import imageEvaluator
-import utilities
+from checks.image import utilities
+import textgen_model
 
 def checkForNearbyAmenities(description):
     result = check_amenities.amenitiesNearby(description)
@@ -23,14 +24,24 @@ def checkForNearbyAmenities(description):
     # case 2: you can be more descriptive! proper nouns identified, but can't identify any quantitative indication of proximity
     # case 3: bad! not enough proper nouns identified
 
-def checkImages(payload):
+def description_feedback(payload):
+    pass
+
+def image_feedback(payload):
     images = payload["images"]
     photobank = []
-    for image in images:
-        photobank.append(utilities.decode_image(image))
-    evaluator = imageEvaluator(images)
+    for image_id, image in images:
+        photobank.append((image_id, utilities.decode_image(image)))
+    image_evaluator = imageEvaluator(photobank)
+    response = image_evaluator.image_explainability()
+    return response
 
-    pass
+def generate_description(platform, address):
+    if platform == "openai":
+        response = textgen_model.generate_property_description_openai(address)
+    elif platform == "cohere":
+        response = textgen_model.generate_property_description_cohere(address)
+    return response
 
 description = """
 Stylish, modern, and chic, two-bedroom, two bath home located on the border of the SOMA, Mission, and Hayes Valley district!

@@ -3,15 +3,13 @@ import openai
 import cohere
 from secrets import COHERE_KEY, OPENAI_KEY
 
-MODEL = "text-davinci-002"
-
 def generate_property_description_openai(address):
     
-
+    MODEL = "text-davinci-002"
     openai.api_key = OPENAI_KEY
     response = openai.Completion.create(
     model=MODEL,
-    prompt=f"Write an Airbnb-like description that describes the property and ammenties really well to customers for this address: {address}",
+    prompt=f"Write an Airbnb-like description that describes the property and amenties really well to customers for this address: {address}",
     max_tokens=2048,
     temperature=0.5
     )
@@ -30,10 +28,11 @@ def generate_property_description_openai(address):
     return response["choices"][0]["text"]
 
 def generate_property_description_cohere(address):
+    MODEL = 'command-xlarge-nightly'
     co = cohere.Client(COHERE_KEY)
-    co_prompt=f"Write an Airbnb-like description that describes the property and ammenties really well to customers for this address: {address}"
+    co_prompt=f"Write an Airbnb-like description that describes the property and amenties really well to customers for this address: {address}"
     response = co.generate(  
-        model='command-xlarge-nightly',  
+        model=MODEL,  
         prompt = co_prompt,  
         max_tokens=400,  
         temperature=0.5,  
