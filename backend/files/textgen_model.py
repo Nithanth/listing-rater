@@ -1,12 +1,12 @@
 import os
 import openai
 import cohere
-from secrets import COHERE_KEY, OPENAI_KEY
+from secrets import COHERE_API_KEY, OPENAI_API_KEY
 
 def generate_property_description_openai(address):
     
     MODEL = "text-davinci-002"
-    openai.api_key = OPENAI_KEY
+    openai.api_key = OPENAI_API_KEY
     response = openai.Completion.create(
     model=MODEL,
     prompt=f"Write an Airbnb-like description that describes the property and amenties really well to customers for this address: {address}",
@@ -29,7 +29,7 @@ def generate_property_description_openai(address):
 
 def generate_property_description_cohere(address):
     MODEL = 'command-xlarge-nightly'
-    co = cohere.Client(COHERE_KEY)
+    co = cohere.Client(COHERE_API_KEY)
     co_prompt=f"Write an Airbnb-like description that describes the property and amenties really well to customers for this address: {address}"
     response = co.generate(  
         model=MODEL,  
