@@ -10,7 +10,21 @@
 
 # production
 /build
+
+#virtual environment
 venv/
+
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+*.so
+*.dll
+*.pyd
+site-packages/
 
 # misc
 .DS_Store
