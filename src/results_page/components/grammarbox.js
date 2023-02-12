@@ -15,7 +15,7 @@ export default function GrammarBox ({ description }) {
       }}
     >
       <GrammarlyEditorPlugin clientId={clientID}>
-        <TextFiel
+        <TextField
           fullWidth='true'
           multiline
           id='full-width-text-field'
