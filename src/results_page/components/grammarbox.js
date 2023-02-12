@@ -27,5 +27,6 @@ export default function GrammarBox ({ description }) {
         </TextField>
       </GrammarlyEditorPlugin>
     </Grammarly>
+    {}
   )
 }
