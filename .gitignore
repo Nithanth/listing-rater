@@ -38,4 +38,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # security
-/backend/files/secrets.py
+/backend/files/secrets_vault.py
