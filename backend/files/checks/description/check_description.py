@@ -1,5 +1,6 @@
 import language_tool_python
-import check_attractions,check_amenities, tokenize_description
+import check_attractions,check_amenities
+from checks.description.text_utils import tokenize_description
 
 # Things to do 
 # move readability check here / make sure it works
