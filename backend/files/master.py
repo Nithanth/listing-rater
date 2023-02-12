@@ -1,6 +1,6 @@
 from checks.description import check_amenities
 from checks.image.check_images import imageEvaluator
-from checks.image import utilities
+from checks.image import image_utilities
 import textgen_model
 
 def checkForNearbyAmenities(description):
@@ -31,7 +31,7 @@ def image_feedback(payload):
     images = payload["images"]
     photobank = []
     for image_id, image in images:
-        photobank.append((image_id, utilities.decode_image(image)))
+        photobank.append((image_id, image_utilities.decode_image(image)))
     image_evaluator = imageEvaluator(photobank)
     response = image_evaluator.image_explainability()
     return response
@@ -62,4 +62,4 @@ home that is close to shopping, world renowned dining, cafes, public transportat
 """
 
 # checkForNearbyAmenities(description)
-checkForNearbyAmenities(description1)
+# checkForNearbyAmenities(description1)

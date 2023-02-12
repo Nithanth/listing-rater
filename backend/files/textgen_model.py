@@ -1,7 +1,7 @@
 import os
 import openai
 import cohere
-from secrets import COHERE_API_KEY, OPENAI_API_KEY
+from secrets_vault import COHERE_API_KEY, OPENAI_API_KEY
 
 def generate_property_description_openai(address):
     
@@ -40,7 +40,7 @@ def generate_property_description_cohere(address):
     return response.generations[0].text
 
 
-address = input("Enter an address: ")
-property_description = generate_property_description_cohere(address)
-print("Description of the property:")
-print(property_description)
+# address = input("Enter an address: ")
+# property_description = generate_property_description_cohere(address)
+# print("Description of the property:")
+# print(property_description)

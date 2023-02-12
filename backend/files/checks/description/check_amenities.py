@@ -1,7 +1,7 @@
-import tokenize_description
+from checks.description.text_utils import tokenize_description
 
 amenities = [
-    "swimming"
+    "swimming",
     "pool",
     "swimming pool",
     "hot tub",
@@ -57,7 +57,7 @@ def check_amenities(description):
     word_trie = build_amenity_tree(amenities)
 
     # write function to break up description into array and cut out commas / punctuation -> steal from other file
-    tokens = tokenize_description.tokenize_description(description)
+    tokens = tokenize_description(description)
 
     # call search function in word_trie to validate words
     print(tokens)
@@ -78,4 +78,4 @@ def test():
 
     print(check_amenities(description))
 
-test()
+# test()
