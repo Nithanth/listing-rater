@@ -14,7 +14,7 @@ Scrap code. Just mess around with it to test out the different functions. Final 
 inside the class. 
 """
 # url1 = 'https://www.airbnb.com/rooms/plus/24631451?adults=1&category_tag=Tag%3A8528&children=0&infants=0&search_mode=flex_destinations_search&check_in=2022-12-31&check_out=2023-01-05&federated_search_id=dc929bbc-6258-4540-8ab6-10c4b8ae8d07&source_impression_id=p3_1667267239_%2BwBRZPznhyu3hCd1'
-img = cv2.imread('/Users/balurs/Documents/GitHub/listing-rater-frontend/backend/files/checks/image/images_to_test/dullness/notDull/NotDull_img1.png', cv2.IMREAD_COLOR)
+# img = cv2.imread('/Users/balurs/Documents/GitHub/listing-rater-frontend/backend/files/checks/image/images_to_test/dullness/notDull/NotDull_img1.png', cv2.IMREAD_COLOR)
 # payload_str = payload[0]['src'].split(',')[1]
 # decoded = decode_image(payload_str)
 # print(type(decoded))
@@ -22,8 +22,8 @@ img = cv2.imread('/Users/balurs/Documents/GitHub/listing-rater-frontend/backend/
 # img = cv2.imdecode(np_array, cv2.IMREAD_COLOR) 
 # img = cv2.imread(np_array, cv2.IMREAD_COLOR)
 # brisque score 
-img_eval = BRISQUE(url=False)
-print(img_eval.score(img))
+# img_eval = BRISQUE(url=False)
+# print(img_eval.score(img))
 
 # # blurryness score
 # loaded_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
