@@ -5,7 +5,7 @@ import master
 app = Flask(__name__)
 cors = CORS(app)
 
-@app.route("/add",methods=["POST", "GET"])
+@app.route("/add",methods=["POST"])
 def add_info():
     # description = request.json['description']
     images = request.json['images']
