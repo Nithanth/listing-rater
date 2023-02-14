@@ -27,14 +27,15 @@ def checkForNearbyAmenities(description):
 def description_feedback(payload):
     pass
 
-def image_feedback(payload):
-    images = payload["images"]
+def image_feedback(images):
     photobank = []
-    for image_id, image in images:
-        photobank.append((image_id, image_utilities.decode_image(image)))
+    for image_object in images:
+        image_id = image_object["id"]
+        raw_image_data = image_object["src"]
+        photobank.append((image_id, image_utilities.convert_image_for_cv(raw_image_data)))
     image_evaluator = imageEvaluator(photobank)
-    response = image_evaluator.image_explainability()
-    return response
+    image_data = image_evaluator.image_checks()
+    return image_data
 
 def generate_description(platform, address):
     if platform == "openai":

@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import master
 
@@ -7,11 +7,13 @@ cors = CORS(app)
 
 @app.route("/add",methods=["POST", "GET"])
 def add_info():
-    description = request.json['description']
+    # description = request.json['description']
     images = request.json['images']
-    image_results = master.check_images(images)
-    description_results = master.check_description(description)
-    response = [[description_results], [image_results]]
+    # print(images)
+    image_data = master.image_feedback(images)
+    # description_results = master.check_description(description)
+    response = jsonify(image_data)
+    print(response)
     return response
 
 @app.route("/generate",methods=["POST"])
