@@ -136,7 +136,7 @@ class imageEvaluator:
     def image_checks(self):
         for image_id in self.image_score_data:
             try:
-                image = self.image_score_data[image_id]
+                image = self.image_score_data[image_id]["raw image data"]
                 self.brisque_eval(image_id, image)
                 self.resolution_eval(image_id, image)
                 self.blurriness_eval(image_id, image)
