@@ -35,6 +35,9 @@ def image_feedback(images):
         photobank.append((image_id, image_utils.convert_image_for_cv(raw_image_data)))
     image_evaluator = imageEvaluator(photobank)
     image_data = image_evaluator.image_checks()
+    for image_id in image_data:
+        raw_image_data = image_data[image_id]["raw image data"]
+        image_data[image_id]["encoded image data"] = image_utils.encode_image(raw_image_data)
     return image_data
 
 def generate_description(platform, address):
