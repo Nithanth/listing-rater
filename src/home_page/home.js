@@ -7,7 +7,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import logo from './monocle_logo.png'
 import Box from '@mui/material/Box'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid'
 
 const button_theme = createTheme({
   status: {
@@ -32,26 +33,26 @@ const button_theme = createTheme({
 function Home () {
   const [description, setDescription] = useState('')
   const [images, setImages] = useState([])
-  const data = {
-    description: description
-  }
 
   const onDrop = useCallback(acceptedFiles => {
     acceptedFiles.map(file => {
+      const imageId = uuidv4()
       const reader = new FileReader()
       reader.onload = function (e) {
         setImages(prevState => [
           ...prevState,
-          { id: 'a', src: e.target.result }
+          { id: imageId, src: e.target.result }
         ])
       }
       reader.readAsDataURL(file)
       return file
     })
   }, [])
+  console.log(images)
 
   const handleSubmit = e => {
     e.preventDefault()
+    console.log(images)
     fetch('/add', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
@@ -100,10 +101,13 @@ function Home () {
         </div>
         <div>
           <ThemeProvider theme={button_theme}>
-            <Link to={('/results')} state={{data}} style={{ textDecoration: 'none' }}>
+            <Link
+              to={'/results'}
+              style={{ textDecoration: 'none' }}
+            >
               <Button
                 variant='outlined'
-                // onClick={handleSubmit}
+                onClick={handleSubmit}
                 size='large'
                 sx={{ border: 1.5 }}
               >
