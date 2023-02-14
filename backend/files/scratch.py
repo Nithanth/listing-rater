@@ -105,3 +105,30 @@ inside the class.
     #     dark_percent = (dark_percent1 + dark_percent2)/2 
     #     self.image_score_data[image_id]["dullness score"] = dark_percent
     #     self.image_score_data[image_id]["whiteness score"] = light_percent
+
+
+json_blob  = {"response":
+                {"a": {"raw image data": "123-b64decoded image string", 
+                    "encoded image data": "123-base64encoded image string",
+                    "BRISQUE SCORE": 10,
+                    "BRISQUE quality check": "good",
+                    "resolution": (1024, 683),
+                    "resolution check": "sufficient",
+                    "blurriness score": 500,
+                    "blurriness quality check": "blurry",
+                    "dullness score": 500,
+                    "dullness quality check": "dull"
+                        }, 
+                "b": {"raw image data": "456-b64decoded image string", 
+                    "encoded image data": "456-base64encoded image string",
+                    "BRISQUE SCORE": 75.123,
+                    "BRISQUE quality check": "bad",
+                    "resolution": (500, 500),
+                    "resolution check": "insufficient",
+                    "blurriness score": 1100,
+                    "blurriness quality check": "not blurry",
+                    "dullness score": 100,
+                    "dullness quality check": "not dull"
+                        }
+                    }
+                }
