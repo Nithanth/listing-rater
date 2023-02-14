@@ -12,8 +12,8 @@ def add_info():
     # print(images)
     image_data = master.image_feedback(images)
     # description_results = master.check_description(description)
-    response = jsonify(image_data)
-    print(response)
+    response = jsonify({"response": image_data})
+    # print(response)
     return response
 
 @app.route("/generate",methods=["POST"])
