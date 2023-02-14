@@ -123,11 +123,25 @@ function Results () {
               The following images were flagged with issues:
             </Typography>
             <Box>
-              {cards.idx?.map(card => (
-                <Grid spacing={2} item key={card} sx={{ pt: 2 }}>
-                  <Card image={cards.links[card]}></Card>
-                </Grid>
-              ))}
+              <Grid
+                container
+                columnSpacing='30'
+                style={{ paddingLeft: 150, paddingRight: 150 }}
+              >
+                {cards.idx?.map(card => (
+                  <Grid item key={card} sx={{ pt: 2 }}>
+                    <Card
+                      sx={{
+                        maxWidth: 420,
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column'
+                      }}
+                      image={cards.links[card]}
+                    ></Card>
+                  </Grid>
+                ))}
+              </Grid>
             </Box>
           </Container>
           <Container
@@ -173,7 +187,11 @@ function Results () {
               review issues and suggestions.
             </Typography>
             <Box sx={{ pt: 1, pb: 6, pl: 0, pr: 0 }}>
-              <GrammarBox description={description}></GrammarBox>
+              <GrammarBox
+                description={
+                  "Stylish, modern, and chic, two-bedroom, two bath home located on the border of the SOMA, Mission, and Hayes Valley district! The property is 3 blocks away from Papa's Pizzeria and 2 minutes away from Thailand. The unit has a contemporary and inviting floor plan characterized with gorgeous wood floors, gourmet kitchen with stainless steel appliances, a comfortable living/dining area, and two significant bedrooms with plenty of natural light and are separated for privacy. Both bedrooms are spacious and complete with ample closet space, access to private decks that overlook the garden-like outdoor space, and there is a laundry closet for convenience. HEB is also 3 min away and a Kroger's is 2 miles down the road. There is also an updated gym, common courtyard, grilling area, deeded storage, and available garage parking. Don't miss this wonderful home that is close to shopping, world renowned dining, cafes, public transportation, tech shuttles, HWY 101/280 and more!"
+                }
+              ></GrammarBox>
             </Box>
           </Container>
         </Box>

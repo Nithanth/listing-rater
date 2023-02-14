@@ -32,6 +32,9 @@ const button_theme = createTheme({
 function Home () {
   const [description, setDescription] = useState('')
   const [images, setImages] = useState([])
+  const data = {
+    description: description
+  }
 
   const onDrop = useCallback(acceptedFiles => {
     acceptedFiles.map(file => {
@@ -97,7 +100,7 @@ function Home () {
         </div>
         <div>
           <ThemeProvider theme={button_theme}>
-            <Link to={('/results')} style={{ textDecoration: 'none' }}>
+            <Link to={('/results')} state={{data}} style={{ textDecoration: 'none' }}>
               <Button
                 variant='outlined'
                 // onClick={handleSubmit}
