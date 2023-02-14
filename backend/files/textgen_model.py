@@ -1,7 +1,7 @@
 import os
 import openai
 import cohere
-from backend.files.secrets_vault import COHERE_API_KEY, OPENAI_API_KEY
+from secrets_vault import COHERE_API_KEY, OPENAI_API_KEY
 
 def generate_property_description_openai(address):
     
