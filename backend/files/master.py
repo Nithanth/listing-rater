@@ -1,6 +1,6 @@
 from checks.description import check_amenities
 from checks.image.check_images import imageEvaluator
-from checks.image import image_utilities
+from checks.image import image_utils
 import textgen_model
 
 def checkForNearbyAmenities(description):
@@ -32,7 +32,7 @@ def image_feedback(images):
     for image_object in images:
         image_id = image_object["id"]
         raw_image_data = image_object["src"]
-        photobank.append((image_id, image_utilities.convert_image_for_cv(raw_image_data)))
+        photobank.append((image_id, image_utils.convert_image_for_cv(raw_image_data)))
     image_evaluator = imageEvaluator(photobank)
     image_data = image_evaluator.image_checks()
     return image_data

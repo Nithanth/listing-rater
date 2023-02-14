@@ -1,12 +1,10 @@
-from email.encoders import encode_base64
-import os 
 import operator
 import traceback
 import numpy as np
 from collections import defaultdict
 import cv2
 from brisque import BRISQUE
-from checks.image.image_utilities import decode_image
+from checks.image.image_utils import decode_image
 """
 Scrap code. Just mess around with it to test out the different functions. Final versions will be put
 inside the class. 
