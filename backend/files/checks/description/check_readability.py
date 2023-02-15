@@ -42,7 +42,6 @@ def ease(score):
     else:
         return 'very_confusing'
 
-
 def test():
     text = "The quick brown fox jumps over the lazy dog. She sells seashells by the seashore."
     score = flesch_kincaid_readability(text)
