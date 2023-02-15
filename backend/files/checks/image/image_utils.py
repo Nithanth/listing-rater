@@ -14,3 +14,8 @@ def convert_image_for_cv(image):
     np_array = np.frombuffer(decoded, np.uint8)
     image = cv2.imdecode(np_array, cv2.IMREAD_COLOR) 
     return image
+
+def convert_image_to_base64(image):
+    _, buffer = cv2.imencode('', image)
+    image_as_text = encode_image(buffer).decode('utf-8')
+    return f"data:image;base64,{image_as_text}"

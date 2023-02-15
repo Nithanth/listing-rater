@@ -56,7 +56,7 @@ class imageEvaluator:
     def brisque_eval(self, image_id, image):
         brisque_score = self.brisque_score(image)
         # threshold 60
-        self.image_score_data[image_id]["BRIQSUE score"] = brisque_score
+        self.image_score_data[image_id]["BRISQUE score"] = brisque_score
         if brisque_score >= 60:
             self.image_score_data[image_id]["BRISQUE quality check"] = "good"
             return False
