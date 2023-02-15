@@ -126,7 +126,7 @@ function Results () {
               <Grid
                 container
                 columnSpacing='30'
-                style={{ paddingLeft: 150, paddingRight: 150 }}
+                style={{ paddingLeft: 50, paddingRight: 50 }}
               >
                 {cards.idx?.map(card => (
                   <Grid item key={card} sx={{ pt: 2 }}>
