@@ -110,6 +110,7 @@ inside the class.
 json_blob  = {"response":
                 {"a": 
                     {
+                        "image id": "a",
                         "raw image data": "123-b64decoded image string", 
                         "encoded image data": "123-base64encoded image string",
                         "BRISQUE SCORE": 10,
@@ -122,7 +123,9 @@ json_blob  = {"response":
                         "dullness quality check": "dull"
                             }, 
                 "b": 
-                        {"raw image data": "456-b64decoded image string", 
+                    {
+                        "image id": "b",
+                        "raw image data": "456-b64decoded image string", 
                         "encoded image data": "456-base64encoded image string",
                         "BRISQUE SCORE": 75.123,
                         "BRISQUE quality check": "bad",

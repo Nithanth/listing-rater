@@ -20,6 +20,7 @@ class imageEvaluator:
         self.image_score_data = defaultdict(dict)
         for image_id, image in images:
             self.image_score_data[image_id]["raw image data"] = image # raw image data base64 decoded pre-openCV read
+            self.image_score_data[image_id]["image id"] = image_id
     
     def add_image(self, image_id, image):
         self.image_score_data[image_id]["raw image data"] = image
