@@ -51,7 +51,6 @@ function Home () {
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(images)
     fetch('/add', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
@@ -111,7 +110,7 @@ function Home () {
             <Link to={'/results'} style={{ textDecoration: 'none' }}>
               <Button
                 variant='outlined'
-                // onClick={handleSubmit}
+                onClick={handleSubmit}
                 size='large'
                 sx={{ border: 1.5 }}
               >

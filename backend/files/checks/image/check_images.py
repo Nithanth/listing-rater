@@ -40,8 +40,7 @@ class imageEvaluator:
         self.image_score_data.clear()
     
     def brisque_score(self, image):
-        loaded_image = cv2.imread(image)
-        brisque_score = self.brisque_evaluator.score(loaded_image)
+        brisque_score = self.brisque_evaluator.score(image)
         return brisque_score
 
     def brisque_avg(self):
@@ -67,8 +66,7 @@ class imageEvaluator:
 
 
     def resolution(self, image):
-        loaded_image = cv2.imread(image)
-        height, width = loaded_image.shape[:2]
+        height, width = image.shape[:2]
         return (height, width)
     
     def resolution_eval(self, image_id, image):
@@ -84,8 +82,7 @@ class imageEvaluator:
 
 
     def blurriness_score(self, image):
-        loaded_image = cv2.imread(image)
-        gray_image = cv2.cvtColor(loaded_image, cv2.COLOR_BGR2GRAY)
+        gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         # apply the laplacian filter to the image and take the variance in order to determine bluryness score
         score = cv2.Laplacian(gray_image, cv2.CV_64F).var()
         return score
@@ -114,12 +111,11 @@ class imageEvaluator:
                 
     
     def dullness_score(self, image):
-        loaded_image = cv2.imread(image)
         # Convert the image to grayscale
-        gray = cv2.cvtColor(loaded_image, cv2.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         
         # Convert the image to the CIELAB color space
-        lab = cv2.cvtColor(loaded_image, cv2.COLOR_BGR2LAB)
+        lab = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
         
         # Split the image into the L, A, and B channels
         l_channel, a_channel, b_channel = cv2.split(lab)

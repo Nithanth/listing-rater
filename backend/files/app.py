@@ -12,7 +12,9 @@ def add_info():
     # print(images)
     image_data = master.image_feedback(images)
     # description_results = master.check_description(description)
+    print(image_data)
     response = jsonify({"response": image_data})
+    print(response)
     # print(response)
     return response
 
