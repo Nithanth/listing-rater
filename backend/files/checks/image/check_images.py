@@ -21,6 +21,10 @@ class imageEvaluator:
         for image_id, image in images:
             self.image_score_data[image_id]["raw image data"] = image # raw image data base64 decoded pre-openCV read
             self.image_score_data[image_id]["image id"] = image_id
+        self.image_score_data["dull images"] = list()
+        self.image_score_data["blurry images"] = list()
+        self.image_score_data["high BRISQUE images"] = list()
+        self.image_score_data["bad resolution images"] = list()
     
     def add_image(self, image_id, image):
         self.image_score_data[image_id]["raw image data"] = image
@@ -56,8 +60,10 @@ class imageEvaluator:
         self.image_score_data[image_id]["BRIQSUE score"] = brisque_score
         if brisque_score >= 60:
             self.image_score_data[image_id]["BRISQUE quality check"] = "good"
+            return False
         else:
             self.image_score_data[image_id]["BRISQUE quality check"] = "bad"
+            return True
 
 
     def resolution(self, image):
@@ -71,8 +77,10 @@ class imageEvaluator:
         # AirBnB standards -> check if aspect ratio needs to be maintained also
         if width >= 1024 and height >= 683 and (width/height)==3/2:
             self.image_score_data[image_id]["resolution check"] = "sufficient"
+            return False
         else:
             self.image_score_data[image_id]["resolution check"] = "insufficient"
+            return True
 
 
     def blurriness_score(self, image):
@@ -99,8 +107,10 @@ class imageEvaluator:
         # threshold 1000
         if blurriness_score < 1000:
             self.image_score_data[image_id]["blurriness quality check"] = "blurry"
+            return True
         else:
             self.image_score_data[image_id]["blurriness quality check"] = "not blurry"
+            return False
                 
     
     def dullness_score(self, image):
@@ -131,17 +141,23 @@ class imageEvaluator:
         # threshold 400
         if dullness_score >= 400:
             self.image_score_data[image_id]["dullness quality check"] = "dull"
+            return True
         else:
             self.image_score_data[image_id]["dullness quality check"] = "not dull"
+            return False
     
     def image_checks(self):
         for image_id in self.image_score_data:
             try:
                 image = self.image_score_data[image_id]["raw image data"]
-                self.brisque_eval(image_id, image)
-                self.resolution_eval(image_id, image)
-                self.blurriness_eval(image_id, image)
-                self.dullness_eval(image_id, image)
+                if self.brisque_eval(image_id, image):
+                    self.image_score_data["high BRISQUE images"].append(image_id)
+                if self.resolution_eval(image_id, image):
+                    self.image_score_data["bad resolution images"].append(image_id)
+                if self.blurriness_eval(image_id, image):
+                    self.image_score_data["blurry images"].append(image_id)
+                if self.dullness_eval(image_id, image):
+                    self.image_score_data["dull images"].append(image_id)
             except:
                 print(traceback.format_exc())
 

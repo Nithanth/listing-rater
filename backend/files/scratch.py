@@ -135,6 +135,10 @@ json_blob  = {"response":
                         "blurriness quality check": "not blurry",
                         "dullness score": 100,
                         "dullness quality check": "not dull"
-                            }   
+                            },
+                "dull images": [],
+                "blurry images": [],
+                "high BRISQUE images": [],
+                "bad resolution images": []   
                     }
                 }
