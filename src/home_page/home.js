@@ -59,9 +59,17 @@ function Home () {
         description: description,
         images: images
       })
-    }).then(() => {
-      console.log('new object posted')
     })
+      .then(console.log('object posted'))
+      .then(response => response.json())
+      .then(data => {
+        // Do something with the response data (in this case, we're logging it to the console)
+        console.log(data.result)
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.error(error)
+      })
   }
 
   return (
@@ -100,10 +108,7 @@ function Home () {
         </div>
         <div>
           <ThemeProvider theme={button_theme}>
-            <Link
-              to={'/results'}
-              style={{ textDecoration: 'none' }}
-            >
+            <Link to={'/results'} style={{ textDecoration: 'none' }}>
               <Button
                 variant='outlined'
                 // onClick={handleSubmit}

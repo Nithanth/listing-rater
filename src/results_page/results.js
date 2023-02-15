@@ -45,16 +45,16 @@ const cards = {
 function Results () {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch("/add");
-      const responseData = await response.json();
-      console.log("responseData")
-      console.log(responseData)
-      setData(responseData);
-    }
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const response = await fetch("/add");
+  //     const responseData = await response.json();
+  //     console.log("responseData")
+  //     console.log(responseData)
+  //     setData(responseData);
+  //   }
+  //   fetchData();
+  // }, []);
 
   return (
     <div className='Results'>

@@ -1,5 +1,5 @@
 import language_tool_python
-import check_attractions,check_amenities
+import check_attractions,check_amenities,check_readability
 from checks.description.text_utils import tokenize_description
 
 # Things to do 
@@ -24,6 +24,11 @@ class descriptionEvaluator:
         matches = self.grammar_tool.check(self.description)
         # processed_matches = self.grammar_spelling_match_parser(matches)
         return matches
+    
+    def readability_check(self):
+        score = check_readability.flesch_kincaid_readability(self.description)
+        readability = check_readability.ease(score)
+        return score, readability
 
     def grammar_spelling_match_parser(matches):
         # write out logic to filter out matches we don't care about

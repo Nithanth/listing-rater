@@ -1,45 +1,52 @@
 import nltk
+from nltk.tokenize import sent_tokenize, word_tokenize
 
-class Result:
-    def __init__(self, score, grade_levels, ease):
-        self.score = score
-        self.ease = ease
-        self.grade_levels = grade_levels
+def flesch_kincaid_readability(text):
+    # Tokenize the input text into sentences and words
+    sentences = sent_tokenize(text)
+    words = word_tokenize(text)
 
-    def __str__(self):
-        return "score: {}, ease: '{}', grade_levels: {}". \
-            format(self.score, self.ease, self.grade_levels)
+    # Count the number of words, sentences, and syllables
+    num_words = len(words)
+    num_sentences = len(sentences)
+    num_syllables = 0
+
+    # Count the number of syllables in each word using the CMU Pronouncing Dictionary
+    cmu_dict = nltk.corpus.cmudict.dict()
+    for word in words:
+        if word.lower() in cmu_dict:
+            num_syllables += max([len(list(y for y in x if y[-1].isdigit())) for x in cmu_dict[word.lower()]])
+
+    # Calculate the Flesch-Kincaid readability score
+    score = 0.39 * (num_words / num_sentences) + 11.8 * (num_syllables / num_words) - 15.59
+
+    # Round the score to two decimal places
+    score = round(score, 2)
+
+    return score
+
+def ease(score):
+    score *= 100
+    if score >= 90 and score <= 100:
+        return 'very_easy'
+    elif score >= 80 and score < 90:
+        return 'easy'
+    elif score >= 70 and score < 80:
+        return 'fairly_easy'
+    elif score >= 60 and score < 70:
+        return 'standard'
+    elif score >= 50 and score < 60:
+        return 'fairly_difficult'
+    elif score >= 30 and score < 50:
+        return 'difficult'
+    else:
+        return 'very_confusing'
 
 
-class Flesch:
-    def __init__(self, stats):
-        self._stats = stats
-        
-    def score(self):
-        score = self._score()
-        return Result(
-            score=score,
-            ease=self._ease(score),
-            grade_levels=self._grade_levels(score))
+def test():
+    text = "The quick brown fox jumps over the lazy dog. She sells seashells by the seashore."
+    score = flesch_kincaid_readability(text)
+    print(score)
+    print(ease(score))
 
-    def _score(self):
-        stats = self._stats
-        words_per_sent = stats.num_words / stats.num_sentences
-        syllables_per_word = stats.num_syllables / stats.num_words
-        return 206.835 - (1.015 * words_per_sent) - (84.6 * syllables_per_word)
-
-    def _ease(self, score):
-        if score >= 90 and score <= 100:
-            return 'very_easy'
-        elif score >= 80 and score < 90:
-            return 'easy'
-        elif score >= 70 and score < 80:
-            return 'fairly_easy'
-        elif score >= 60 and score < 70:
-            return 'standard'
-        elif score >= 50 and score < 60:
-            return 'fairly_difficult'
-        elif score >= 30 and score < 50:
-            return 'difficult'
-        else:
-            return 'very_confusing'
+test()
