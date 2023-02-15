@@ -110,7 +110,7 @@ function Home () {
             <Link to={'/results'} style={{ textDecoration: 'none' }}>
               <Button
                 variant='outlined'
-                onClick={handleSubmit}
+                // onClick={handleSubmit}
                 size='large'
                 sx={{ border: 1.5 }}
               >
