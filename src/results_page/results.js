@@ -1,7 +1,7 @@
 import './results.css'
 import { Container } from '@mui/system'
 import { TextField, Button } from '@mui/material'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import Dropzone from '../components/Dropzone/dropzone'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
@@ -43,6 +43,19 @@ const cards = {
 }
 
 function Results () {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("/add");
+      const responseData = await response.json();
+      console.log("responseData")
+      console.log(responseData)
+      setData(responseData);
+    }
+    fetchData();
+  }, []);
+
   return (
     <div className='Results'>
       <header>

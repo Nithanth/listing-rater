@@ -48,7 +48,6 @@ function Home () {
       return file
     })
   }, [])
-  console.log(images)
 
   const handleSubmit = e => {
     e.preventDefault()
