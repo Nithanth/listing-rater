@@ -28,4 +28,3 @@ def generate_description():
 
 if __name__ == "__main__":
     app.run()
-    
