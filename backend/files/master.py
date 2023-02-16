@@ -2,6 +2,7 @@ from checks.description import check_amenities
 from checks.image.check_images import imageEvaluator
 from checks.image import image_utils
 import textgen_model
+import traceback
 
 def checkForNearbyAmenities(description):
     result = check_amenities.amenitiesNearby(description)
@@ -33,11 +34,17 @@ def image_feedback(images):
         image_id = image_object["id"]
         raw_image_data = image_object["src"]
         photobank.append((image_id, image_utils.convert_image_for_cv(raw_image_data)))
-    image_evaluator = imageEvaluator(photobank)
+    image_evaluator = imageEvaluator(photobank) 
     image_data = image_evaluator.image_checks()
     for image_id in image_data:
-        raw_image_data = image_data[image_id]["raw image data"]
-        image_data[image_id]["encoded image data"] = image_utils.encode_image(raw_image_data)
+        try:
+            raw_image_data = image_data[image_id]["raw image data"]
+            image_data[image_id]["encoded image data"] = image_utils.convert_image_for_react(raw_image_data, format='.jpg')
+            del image_data[image_id]["raw image data"]
+        except TypeError:
+            continue
+        except:
+            print(traceback.format_exc())
     return image_data
 
 def generate_description(platform, address):

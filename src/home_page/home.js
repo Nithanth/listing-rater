@@ -59,16 +59,24 @@ function Home () {
         images: images
       })
     })
-      .then(console.log('object posted'))
-      .then(response => response.json())
-      .then(data => {
-        // Do something with the response data (in this case, we're logging it to the console)
-        console.log(data.result)
-      })
-      .catch(error => {
-        // Handle any errors that occur during the request
-        console.error(error)
-      })
+    .then(response => {
+      console.log('object posted')
+      if (!response.ok) {
+        throw new Error('Network response was not ok')
+      }
+      return response.json()
+    })
+    .then(data => {
+      console.log('data received', data)
+      if (!data && !data.result) {
+        throw new Error('Response data is not valid')
+      }
+    })
+    .catch(error => {
+      // Handle any errors that occur during the request
+      console.error(error)
+    })
+  
   }
 
   return (
@@ -110,7 +118,7 @@ function Home () {
             <Link to={'/results'} style={{ textDecoration: 'none' }}>
               <Button
                 variant='outlined'
-                // onClick={handleSubmit}
+                onClick={handleSubmit}
                 size='large'
                 sx={{ border: 1.5 }}
               >
