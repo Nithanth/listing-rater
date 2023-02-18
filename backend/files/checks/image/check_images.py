@@ -86,7 +86,6 @@ class imageEvaluator:
         # apply the laplacian filter to the image and take the variance in order to determine bluryness score
         score = cv2.Laplacian(gray_image, cv2.CV_64F).var()
         return score
-        # self.image_score_data[image_id]["blurriness score"] = score
     
     def blurriness_avg(self):
         avg = 0
