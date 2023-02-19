@@ -1,6 +1,7 @@
 import cv2
 
-def blurriness_score(image):
+def blurriness_score(image_filepath):
+    image = cv2.imread(image_filepath)
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     # Apply different kernel sizes to the Laplacian filter
     score_3 = cv2.Laplacian(gray_image, cv2.CV_64F).var()
