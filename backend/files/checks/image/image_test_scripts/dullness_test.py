@@ -1,7 +1,8 @@
 import cv2
 import numpy as np
 
-def dullness_score(self, image):
+def dullness_score(image_filepath):
+        image = cv2.imread(image_filepath)
         # Convert the image to grayscale
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         
