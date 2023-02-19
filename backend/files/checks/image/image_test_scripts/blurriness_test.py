@@ -1,5 +1,6 @@
 import cv2
-
+import os
+import pandas as pd
 def blurriness_score(image_filepath):
     image = cv2.imread(image_filepath)
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -12,6 +13,32 @@ def blurriness_score(image_filepath):
     # Apply a threshold to classify the photo as "blurry" or "sharp"
     threshold = 50
     if score < threshold:
-        return "blurry"
+        return "blurry", score
     else:
-        return "sharp"
+        return "sharp", score
+
+image_data = []
+
+# assign directory
+directories = ['images_to_test/blurriness/blurry', 'images_to_test/blurriness/crisp']
+ 
+# iterate over files in
+# that directory
+for directory in directories:
+    for filename in os.listdir(directory):
+        f = os.path.join(directory, filename)
+        # checking if it is a file
+        if os.path.isfile(f):
+            split_path = f.copy().split('/')
+            id, true_label = split_path[-1], split_path[-2]
+            output_label, score = blurriness_score(f)
+            image_data.append({'unique_id': id, 'true_label': true_label, 'score': score, 'output_label': output_label})
+
+df = pd.DataFrame(image_data)
+print(df)
+
+
+
+
+
+        

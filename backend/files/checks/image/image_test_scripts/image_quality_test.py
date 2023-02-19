@@ -1,9 +1,12 @@
 import cv2
 import numpy as np
+import pandas as pd
 from skimage.metrics import structural_similarity as ssim
 from skimage.color import rgb2gray
 import tensorflow as tf
 import tensorflow_hub as hub
+import os
+
 
 def evaluate_image(image_path):
     # Load the image
@@ -70,4 +73,23 @@ def evaluate_image(image_path):
     
     # Combine the scores into a single metric
     score = 0.2 * (1 - ssim_score) + 0.3 * (1 - lap_var/10000) + 0.1 * std_dev + 0.2 * brisque + 0.15 * content_score + 0.05 * distortion_score + 0.1 * lighting_score
-    return score, all(x == 'good quality' for x in subscore_results), "good score" if score>0.6 else "bad score"
+    return score, all(x == 'good quality' for x in subscore_results), "good" if score>0.6 else "bad"
+
+image_data = []
+# assign directory
+directories = ['images_to_test/holistic/good', 'images_to_test/holistic/bad']
+ 
+# iterate over files in
+# that directory
+for directory in directories:
+    for filename in os.listdir(directory):
+        f = os.path.join(directory, filename)
+        # checking if it is a file
+        if os.path.isfile(f):
+            split_path = f.copy().split('/')
+            id, true_label = split_path[-1], split_path[-2]
+            score, subscore_check, output_label = evaluate_image(f)
+            image_data.append({'unique_id': id, 'true_label': true_label, 'score': score, 'subscore_check': subscore_check, 'output_label': output_label})
+
+df = pd.DataFrame(image_data)
+print(df)
