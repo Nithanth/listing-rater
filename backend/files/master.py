@@ -10,7 +10,7 @@ def description_feedback(payload):
     description_evaluator.readability_check()
     description_evaluator.amenities_check()
     description_evaluator.nearby_attractions_check()
-    print(description_evaluator.description_data)
+    return description_evaluator.description_data
     
 def image_feedback(images):
     photobank = []
@@ -58,7 +58,7 @@ home that is close to shopping, world renowned dining, cafes, public transportat
 description_shorter_words = """
 Stylish, modern, and chic, two-bedroom, two bath home located on the border of the SOMA, Mission, and Hayes Valley district!
 The unit has a contemporary floor plan with gorgeous wood floors, stainless steel appliances, and two significant bedrooms with plenty of natural light and are separated for privacy. Both bedrooms are
-spacious and complete with  closet space, access to private decks that overlook the garden, and there is a laundry closet
+spacious and complete with  closet space, access to private decks that overlook the garden and gorgeous pool, and there is a laundry closet
 for convenience. There is also an updated gym, common courtyard, grilling area, deeded storage, and available garage parking. Don't miss this wonderful
 home that is close to shopping, world renowned dining, cafes, public transportation, tech shuttles, HWY 101/280 and more!
 """
@@ -69,7 +69,10 @@ The fox jumped over the cliff.
 
 # checkForNearbyAmenities(description)
 # checkForNearbyAmenities(description1)
-description_feedback(description)
-description_feedback(description_shorter_words)
-description_feedback(description_more_sentences)
-description_feedback(description_test)
+cases = []
+cases.append(description)
+cases.append(description_more_sentences)
+cases.append(description_shorter_words)
+cases.append(description_test)
+for x in cases:
+    print(description_feedback(x))

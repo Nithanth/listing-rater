@@ -11,8 +11,24 @@ amenities = [
     "ping",
     "pong",
     "game",
-    "fireplace"
+    "fireplace",
+    "garden",
+    "gym",
+    "garage",
+    "courtyard",
+    "grill",
+    "barbecue",
+    "wifi",
+    "wi-fi"
 ]
+phrase_dict = {
+    "swimming":"swimming pool",
+    "pool": "swimming pool",
+    "billiard":"billiards table",
+    "billiards":"billiards table",
+    "ping":"ping pong table",
+    "pong":"ping pong table"
+}
 
 # Iterate through description and look for amenities listed which are defined above
 class TrieNode():
@@ -59,8 +75,9 @@ def check_amenities(description):
 
     # call search function in word_trie to validate words
     for word in tokens:
+        word = word.lower()
         if word_trie.search_word(word):
-            amenities_found.append(word)
+            amenities_found.append(phrase_dict.get(word,word))
     
     return amenities_found
 

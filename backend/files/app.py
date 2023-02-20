@@ -20,6 +20,14 @@ def add_info():
     # print(response)
     return response
 
+@app.route("/evaluate_description",methods=["POST"])
+def evaluate_description():
+    description = request.json['description']
+    description_results = master.description_feedback(description)
+    response = jsonify({"response": description_results})
+    print(response)
+    return response
+
 @app.route("/generate",methods=["POST"])
 def generate_description():
     address = request.json['address']
