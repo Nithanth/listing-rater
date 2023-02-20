@@ -107,7 +107,7 @@ inside the class.
     #     self.image_score_data[image_id]["whiteness score"] = light_percent
 
 
-json_blob  = {"response":
+image_json_blob  = {"response":
                 {"a": 
                     {
                         "image id": "a",
@@ -142,3 +142,16 @@ json_blob  = {"response":
                 "bad resolution images": []   
                     }
                 }
+description_json_blob  = {"response":
+                {
+                "readability": {
+                    "score": 79,
+                    "text_result": "fairly easy"
+                },
+                "amenities": ["swimming pool","wine rack","pool table"],
+                "attractions": {
+                    "attractions_included": 79,
+                    "attractions_proximity_included": "fairly easy"
+                }
+            }
+            }
