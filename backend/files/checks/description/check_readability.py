@@ -53,7 +53,7 @@ def flesch_kincaid_readability(text):
     return flesch_score
 
 def ease(score):
-    if score >= 90 and score <= 100:
+    if score >= 90:
         return 'very_easy'
     elif score >= 80 and score < 90:
         return 'easy'
