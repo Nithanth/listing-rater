@@ -53,8 +53,7 @@ def find_nearby_attractions(description):
             denom += 1.0
             if find_proximity_indicators(tokens,idx):
                 count += 1.0
-
-    if count / denom > .5:
+    if denom > 0 and count / denom > .5:
         result[1] = True
     
     return result

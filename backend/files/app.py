@@ -7,11 +7,13 @@ cors = CORS(app)
 
 @app.route("/add",methods=["POST"])
 def add_info():
-    # description = request.json['description']
     images = request.json['images']
     # print(images)
     image_data = master.image_feedback(images)
-    # description_results = master.check_description(description)
+
+    description = request.json['description']
+    description_results = master.description_feedback(description)
+    print(description_results)
     # print(image_data)
     response = jsonify({"response": image_data})
     print(response)

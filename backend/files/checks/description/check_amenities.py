@@ -3,16 +3,14 @@ from checks.description.text_utils import tokenize_description
 amenities = [
     "swimming",
     "pool",
-    "swimming pool",
-    "hot tub",
+    "swimming",
+    "tub",
     "jacuzzi",
     "billiard",
     "billiards",
-    "ping pong",
-    "table tennis",
-    "tree house",
-    "wine rack",
-    "bar cart",
+    "ping",
+    "pong",
+    "game",
     "fireplace"
 ]
 
@@ -60,7 +58,6 @@ def check_amenities(description):
     tokens = tokenize_description(description)
 
     # call search function in word_trie to validate words
-    print(tokens)
     for word in tokens:
         if word_trie.search_word(word):
             amenities_found.append(word)
