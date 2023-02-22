@@ -143,11 +143,15 @@ export default function Album () {
                 spacing={2}
                 justifyContent='center'
               >
-                <RouterLink to={'/description'} style={{ textDecoration: 'none' }}>
+                <RouterLink
+                  to={'/description'}
+                  style={{ textDecoration: 'none' }}
+                >
                   <Button
                     variant='contained'
                     size='large'
                     autoCapitalize='false'
+                    style={{ textTransform: 'none', fontSize:'20px' }}
                   >
                     Optimize Description
                   </Button>
@@ -157,6 +161,7 @@ export default function Album () {
                     variant='contained'
                     size='large'
                     autoCapitalize='false'
+                    style={{ textTransform: 'none', fontSize:'20px' }}
                   >
                     Optimize Images
                   </Button>

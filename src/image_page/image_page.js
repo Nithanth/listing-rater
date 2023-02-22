@@ -50,31 +50,30 @@ function ImagePage () {
 
   const handleSubmit = e => {
     e.preventDefault()
-    fetch('/add', {
+    fetch('/evaluate_images', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         images: images
       })
     })
-    .then(response => {
-      console.log('object posted')
-      if (!response.ok) {
-        throw new Error('Network response was not ok')
-      }
-      return response.json()
-    })
-    .then(data => {
-      console.log('data received', data)
-      if (!data && !data.result) {
-        throw new Error('Response data is not valid')
-      }
-    })
-    .catch(error => {
-      // Handle any errors that occur during the request
-      console.error(error)
-    })
-  
+      .then(response => {
+        console.log('object posted')
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+        return response.json()
+      })
+      .then(data => {
+        console.log('data received', data)
+        if (!data && !data.result) {
+          throw new Error('Response data is not valid')
+        }
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.error(error)
+      })
   }
 
   return (
@@ -103,8 +102,9 @@ function ImagePage () {
                 onClick={handleSubmit}
                 size='large'
                 sx={{ border: 1.5 }}
+                style={{ textTransform: 'none' }}
               >
-                Rate my listing
+                Submit
               </Button>
             </Link>
           </ThemeProvider>

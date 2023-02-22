@@ -38,27 +38,26 @@ function DescriptionPage () {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        description: description,
+        description: description
       })
     })
-    .then(response => {
-      console.log('object posted')
-      if (!response.ok) {
-        throw new Error('Network response was not ok')
-      }
-      return response.json()
-    })
-    .then(data => {
-      console.log('data received', data)
-      if (!data && !data.result) {
-        throw new Error('Response data is not valid')
-      }
-    })
-    .catch(error => {
-      // Handle any errors that occur during the request
-      console.error(error)
-    })
-  
+      .then(response => {
+        console.log('object posted')
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+        return response.json()
+      })
+      .then(data => {
+        console.log('data received', data)
+        if (!data && !data.result) {
+          throw new Error('Response data is not valid')
+        }
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.error(error)
+      })
   }
 
   return (
@@ -81,18 +80,21 @@ function DescriptionPage () {
           </Container>
         </div>
         <div>
-          <ThemeProvider theme={button_theme}>
-            <Link to={'/results'} style={{ textDecoration: 'none' }}>
-              <Button
-                variant='outlined'
-                onClick={handleSubmit}
-                size='large'
-                sx={{ border: 1.5 }}
-              >
-                Rate my listing
-              </Button>
-            </Link>
-          </ThemeProvider>
+          <Container sx={{pt:2}}>
+            <ThemeProvider theme={button_theme}>
+              <Link to={'/results'} style={{ textDecoration: 'none' }}>
+                <Button
+                  variant='outlined'
+                  onClick={handleSubmit}
+                  size='large'
+                  sx={{ border: 1.5 }}
+                  style={{ textTransform: 'none' }}
+                >
+                  Submit
+                </Button>
+              </Link>
+            </ThemeProvider>
+          </Container>
         </div>
       </header>
     </div>

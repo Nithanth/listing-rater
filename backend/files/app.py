@@ -5,19 +5,13 @@ import master
 app = Flask(__name__)
 cors = CORS(app)
 
-@app.route("/add",methods=["POST"])
+@app.route("/evaluate_images",methods=["POST"])
 def add_info():
     images = request.json['images']
-    # print(images)
     image_data = master.image_feedback(images)
-
-    description = request.json['description']
-    description_results = master.description_feedback(description)
-    print(description_results)
-    # print(image_data)
+    print("image feedback:",image_data)
     response = jsonify({"response": image_data})
-    print(response)
-    # print(response)
+    print("jsonified response:",response)
     return response
 
 @app.route("/evaluate_description",methods=["POST"])

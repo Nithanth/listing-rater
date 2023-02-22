@@ -5,9 +5,6 @@ from .check_readability import flesch_kincaid_readability, ease
 from checks.description.text_utils import tokenize_description
 from collections import defaultdict
 
-# Things to do 
-# move readability check here / make sure it works
-
 class descriptionEvaluator:
     def __init__(self,description):
         self.description = description

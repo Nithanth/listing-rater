@@ -59,7 +59,7 @@ export default function ButtonAppBar() {
                                         key={page}
                                         textAlign="right"
                                     >
-                                        <Button key={page} sx={{ color: '#fff' }}>
+                                        <Button key={page} sx={{ color: '#fff' }} style={{ fontSize: '16px', textTransform: 'none' }}>
                                             {page}
                                         </Button>
                                     </MenuItem>
