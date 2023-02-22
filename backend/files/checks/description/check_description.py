@@ -70,5 +70,4 @@ Other things to note Please be aware that there will be NO refunds for Wifi issu
     print(evaluator.grammar_check())
     print(evaluator.nearby_attractions_check())
 
-
 # test_description_evaluator()

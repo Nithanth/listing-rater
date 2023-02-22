@@ -1,4 +1,4 @@
-import './home.css'
+import './image_page.css'
 import { Container } from '@mui/system'
 import { TextField, Button } from '@mui/material'
 import { useState, useCallback } from 'react'
@@ -30,8 +30,7 @@ const button_theme = createTheme({
   }
 })
 
-function Home () {
-  const [description, setDescription] = useState('')
+function ImagePage () {
   const [images, setImages] = useState([])
 
   const onDrop = useCallback(acceptedFiles => {
@@ -55,7 +54,6 @@ function Home () {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        description: description,
         images: images
       })
     })
@@ -86,22 +84,6 @@ function Home () {
             <img src={logo} className="App-logo"/>
         </div> */}
         <h1>AirBNB Listing Rater</h1>
-        <div className='content'>
-          <p>Enter description</p>
-          <Container>
-            <TextField
-              id='full-width-text-field'
-              type='search'
-              variant='filled'
-              multiline
-              rows={6}
-              maxWidth='lg'
-              value={description}
-              onChange={e => setDescription(e.target.value)}
-              style={{ width: 600 }}
-            />
-          </Container>
-        </div>
         <div className='App'>
           <p>Upload images</p>
           <p></p>
@@ -132,4 +114,4 @@ function Home () {
   )
 }
 
-export default Home
+export default ImagePage
