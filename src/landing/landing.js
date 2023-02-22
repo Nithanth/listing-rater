@@ -1,7 +1,7 @@
 import Album from './album'
 import { Container } from '@mui/material'
 
-function About () {
+function Landing () {
   return (
     <Container maxWidth='false'>
       <Album></Album>
@@ -9,4 +9,4 @@ function About () {
   )
 }
 
-export default About
+export default Landing

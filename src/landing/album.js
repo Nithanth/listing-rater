@@ -116,7 +116,7 @@ export default function Album () {
                 color='text.primary'
                 gutterBottom
               >
-                Optimize your AirBNB Listing
+                Boost your AirBNB Listing
               </Typography>
             </Container>
             <Container maxWidth='me'>
@@ -143,13 +143,22 @@ export default function Album () {
                 spacing={2}
                 justifyContent='center'
               >
-                <RouterLink to={'/'} style={{ textDecoration: 'none' }}>
+                <RouterLink to={'/description'} style={{ textDecoration: 'none' }}>
                   <Button
                     variant='contained'
                     size='large'
                     autoCapitalize='false'
                   >
-                    Optimize
+                    Optimize Description
+                  </Button>
+                </RouterLink>
+                <RouterLink to={'/images'} style={{ textDecoration: 'none' }}>
+                  <Button
+                    variant='contained'
+                    size='large'
+                    autoCapitalize='false'
+                  >
+                    Optimize Images
                   </Button>
                 </RouterLink>
               </Stack>
