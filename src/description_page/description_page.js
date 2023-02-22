@@ -29,12 +29,12 @@ const button_theme = createTheme({
   }
 })
 
-function Description () {
+function DescriptionPage () {
   const [description, setDescription] = useState('')
 
   const handleSubmit = e => {
     e.preventDefault()
-    fetch('/add', {
+    fetch('/evaluate_description', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -64,10 +64,6 @@ function Description () {
   return (
     <div className='App'>
       <header className='App-header'>
-        {/* <div class='spin'>
-            <img src={logo} className="App-logo"/>
-        </div> */}
-        <h1>AirBNB Listing Rater</h1>
         <div className='content'>
           <p>Enter description</p>
           <Container>
@@ -103,4 +99,4 @@ function Description () {
   )
 }
 
-export default Description
+export default DescriptionPage

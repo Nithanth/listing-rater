@@ -69,10 +69,10 @@ The fox jumped over the cliff.
 
 # checkForNearbyAmenities(description)
 # checkForNearbyAmenities(description1)
-cases = []
-cases.append(description)
-cases.append(description_more_sentences)
-cases.append(description_shorter_words)
-cases.append(description_test)
-for x in cases:
-    print(description_feedback(x))
+# cases = []
+# cases.append(description)
+# cases.append(description_more_sentences)
+# cases.append(description_shorter_words)
+# cases.append(description_test)
+# for x in cases:
+#     print(description_feedback(x))

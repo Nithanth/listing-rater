@@ -19,7 +19,9 @@ amenities = [
     "grill",
     "barbecue",
     "wifi",
-    "wi-fi"
+    "wi-fi",
+    "pergola",
+    
 ]
 phrase_dict = {
     "swimming":"swimming pool",
@@ -67,7 +69,7 @@ def build_amenity_tree(amenities):
     return word_trie
 
 def check_amenities(description):
-    amenities_found = []
+    amenities_found = set()
     word_trie = build_amenity_tree(amenities)
 
     # write function to break up description into array and cut out commas / punctuation -> steal from other file
@@ -76,10 +78,10 @@ def check_amenities(description):
     # call search function in word_trie to validate words
     for word in tokens:
         word = word.lower()
-        if word_trie.search_word(word):
-            amenities_found.append(phrase_dict.get(word,word))
+        if word not in amenities_found and word_trie.search_word(word):
+            amenities_found.add(phrase_dict.get(word,word))
     
-    return amenities_found
+    return list(amenities_found)
 
 def test():
     description = """ Stylish, modern, and chic, two-bedroom, two bath home located on the border of the SOMA, Mission, and Hayes Valley distric complete with a swimming pool!
