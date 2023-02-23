@@ -1,5 +1,6 @@
 import nltk.tokenize
 
+
 def tokenize_description(description):
     tokens = nltk.tokenize.word_tokenize(description)
     count = 0
@@ -10,6 +11,7 @@ def tokenize_description(description):
         else:
             count += 1
     return tokens
+
 
 description = """
 Stylish, modern, and chic, two-bedroom, two bath home located on the border of the SOMA, Mission, and Hayes Valley district!

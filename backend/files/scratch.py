@@ -15,9 +15,9 @@ inside the class.
 # # decoded = decode_image(payload_str)
 # # print(type(decoded))
 # # np_array = np.frombuffer(decoded, np.uint8)
-# # img = cv2.imdecode(np_array, cv2.IMREAD_COLOR) 
+# # img = cv2.imdecode(np_array, cv2.IMREAD_COLOR)
 # # img = cv2.imread(np_array, cv2.IMREAD_COLOR)
-# # brisque score 
+# # brisque score
 # img_eval = BRISQUE(url=False)
 # print(img_eval.score(img))
 
@@ -35,16 +35,16 @@ inside the class.
 #             (b,g,r) = img[i,j]
 #             palatte[(b,g,r)] += 1
 
-#     # sort the colors present in the image 
+#     # sort the colors present in the image
 #     sorted_x = sorted(palatte.items(), key=operator.itemgetter(1), reverse = True)
 #     light_shade, dark_shade, shade_count, pixel_limit = 0, 0, 0, 25
 #     for i, x in enumerate(sorted_x[:pixel_limit]):
-#         if all(xx <= 20 for xx in x[0][:3]): ## dull : too much darkness 
+#         if all(xx <= 20 for xx in x[0][:3]): ## dull : too much darkness
 #             dark_shade += x[1]
-#         if all(xx >= 240 for xx in x[0][:3]): ## bright : too much whiteness 
+#         if all(xx >= 240 for xx in x[0][:3]): ## bright : too much whiteness
 #             light_shade += x[1]
 #         shade_count += x[1]
-        
+
 #     light_percent = round((float(light_shade)/shade_count)*100, 2)
 #     dark_percent = round((float(dark_shade)/shade_count)*100, 2)
 #     return light_percent, dark_percent
@@ -62,56 +62,56 @@ inside the class.
 # except Exception as e:
 #     print(traceback.format_exc())
 
-# light_percent = (light_percent1 + light_percent2)/2 
-# dark_percent = (dark_percent1 + dark_percent2)/2 
+# light_percent = (light_percent1 + light_percent2)/2
+# dark_percent = (dark_percent1 + dark_percent2)/2
 # print(light_percent, dark_percent)
 
 # def dullness_whiteness_scores(self, image_id, image):
-    #     height, width = image.shape[:2]
-    #     halves = (height//2, width//2)
-    #     image1 = image[0:halves[0], 0:halves[1]]
-    #     image2 = image[halves[0]:height, halves[1]:width]
+#     height, width = image.shape[:2]
+#     halves = (height//2, width//2)
+#     image1 = image[0:halves[0], 0:halves[1]]
+#     image2 = image[halves[0]:height, halves[1]:width]
 
-    #     def color_analysis(image, height, width):
-    #         palatte = defaultdict(int)
-    #         height, width = image.shape[:2]
-    #         for i in range(height):
-    #             for j in range(width):
-    #                 (b,g,r) = image[i,j]
-    #                 palatte[(b,g,r)] += 1
+#     def color_analysis(image, height, width):
+#         palatte = defaultdict(int)
+#         height, width = image.shape[:2]
+#         for i in range(height):
+#             for j in range(width):
+#                 (b,g,r) = image[i,j]
+#                 palatte[(b,g,r)] += 1
 
-    #         # sort the colors present in the image 
-    #         sorted_palette = sorted(palatte.items(), key=operator.itemgetter(1), reverse = True)
-    #         light_shade, dark_shade, shade_count, pixel_limit = 0, 0, 0, 25
-    #         for i, x in enumerate(sorted_palette[:pixel_limit]):
-    #             if all(xx <= 20 for xx in x[0][:3]): ## dull : too much darkness 
-    #                 dark_shade += x[1]
-    #             if all(xx >= 240 for xx in x[0][:3]): ## bright : too much whiteness 
-    #                 light_shade += x[1]
-    #             shade_count += x[1]
-            
-    #         # calculate percent of the shade that is light and dark based on the total shade count
-    #         light_percent = round((float(light_shade)/shade_count)*100, 2)
-    #         dark_percent = round((float(dark_shade)/shade_count)*100, 2)
-    #         return light_percent, dark_percent
+#         # sort the colors present in the image
+#         sorted_palette = sorted(palatte.items(), key=operator.itemgetter(1), reverse = True)
+#         light_shade, dark_shade, shade_count, pixel_limit = 0, 0, 0, 25
+#         for i, x in enumerate(sorted_palette[:pixel_limit]):
+#             if all(xx <= 20 for xx in x[0][:3]): ## dull : too much darkness
+#                 dark_shade += x[1]
+#             if all(xx >= 240 for xx in x[0][:3]): ## bright : too much whiteness
+#                 light_shade += x[1]
+#             shade_count += x[1]
 
-    #     try:
-    #         light_percent1, dark_percent1 = color_analysis(image1)
-    #         light_percent2, dark_percent2 = color_analysis(image2)
-    #     except:
-    #         print(traceback.format_exc())
+#         # calculate percent of the shade that is light and dark based on the total shade count
+#         light_percent = round((float(light_shade)/shade_count)*100, 2)
+#         dark_percent = round((float(dark_shade)/shade_count)*100, 2)
+#         return light_percent, dark_percent
 
-    #     light_percent = (light_percent1 + light_percent2)/2 
-    #     dark_percent = (dark_percent1 + dark_percent2)/2 
-    #     self.image_score_data[image_id]["dullness score"] = dark_percent
-    #     self.image_score_data[image_id]["whiteness score"] = light_percent
+#     try:
+#         light_percent1, dark_percent1 = color_analysis(image1)
+#         light_percent2, dark_percent2 = color_analysis(image2)
+#     except:
+#         print(traceback.format_exc())
+
+#     light_percent = (light_percent1 + light_percent2)/2
+#     dark_percent = (dark_percent1 + dark_percent2)/2
+#     self.image_score_data[image_id]["dullness score"] = dark_percent
+#     self.image_score_data[image_id]["whiteness score"] = light_percent
 
 
-image_json_blob  = {"response":
-                {"a": 
+image_json_blob = {"response":
+                   {"a":
                     {
                         "image id": "a",
-                        "raw image data": "123-b64decoded image string", 
+                        "raw image data": "123-b64decoded image string",
                         "encoded image data": "123-base64encoded image string",
                         "BRISQUE SCORE": 10,
                         "BRISQUE quality check": "good",
@@ -121,11 +121,11 @@ image_json_blob  = {"response":
                         "blurriness quality check": "blurry",
                         "dullness score": 500,
                         "dullness quality check": "dull"
-                            }, 
-                "b": 
+                    },
+                    "b":
                     {
                         "image id": "b",
-                        "raw image data": "456-b64decoded image string", 
+                        "raw image data": "456-b64decoded image string",
                         "encoded image data": "456-base64encoded image string",
                         "BRISQUE SCORE": 75.123,
                         "BRISQUE quality check": "bad",
@@ -135,23 +135,23 @@ image_json_blob  = {"response":
                         "blurriness quality check": "not blurry",
                         "dullness score": 100,
                         "dullness quality check": "not dull"
-                            },
-                "dull images": [],
-                "blurry images": [],
-                "high BRISQUE images": [],
-                "bad resolution images": []   
+                    },
+                    "dull images": [],
+                    "blurry images": [],
+                    "high BRISQUE images": [],
+                    "bad resolution images": []
                     }
-                }
-description_json_blob  = {"response":
-                {
-                "readability": {
-                    "score": 79,
-                    "text_result": "fairly easy"
-                },
-                "amenities": ["swimming pool","wine rack","pool table"],
-                "attractions": {
-                    "attractions_included": 79,
-                    "attractions_proximity_included": "fairly easy"
-                }
-            }
-            }
+                   }
+description_json_blob = {"response":
+                         {
+                             "readability": {
+                                 "score": 79,
+                                 "text_result": "fairly easy"
+                             },
+                             "amenities": ["swimming pool", "wine rack", "pool table"],
+                             "attractions": {
+                                 "attractions_included": 79,
+                                 "attractions_proximity_included": "fairly easy"
+                             }
+                         }
+                         }

@@ -5,25 +5,29 @@ from checks.image import image_utils
 import textgen_model
 import traceback
 
+
 def description_feedback(payload):
     description_evaluator = descriptionEvaluator(payload)
     description_evaluator.readability_check()
     description_evaluator.amenities_check()
     description_evaluator.nearby_attractions_check()
     return description_evaluator.description_data
-    
+
+
 def image_feedback(images):
     photobank = []
     for image_object in images:
         image_id = image_object["id"]
         raw_image_data = image_object["src"]
-        photobank.append((image_id, image_utils.convert_image_for_cv(raw_image_data)))
-    image_evaluator = imageEvaluator(photobank) 
+        photobank.append(
+            (image_id, image_utils.convert_image_for_cv(raw_image_data)))
+    image_evaluator = imageEvaluator(photobank)
     image_data = image_evaluator.image_checks()
     for image_id in image_data:
         try:
             raw_image_data = image_data[image_id]["raw image data"]
-            image_data[image_id]["encoded image data"] = image_utils.convert_image_for_react(raw_image_data, format='.jpg')
+            image_data[image_id]["encoded image data"] = image_utils.convert_image_for_react(
+                raw_image_data, format='.jpg')
             del image_data[image_id]["raw image data"]
         except TypeError:
             continue
@@ -31,12 +35,16 @@ def image_feedback(images):
             print(traceback.format_exc())
     return image_data
 
-def generate_description(platform, address):
+
+def generate_description(platform, address, amenities, bedroom_count, bathroom_count):
     if platform == "openai":
-        response = textgen_model.generate_property_description_openai(address)
+        response = textgen_model.generate_property_description_openai(
+            address, amenities, bedroom_count, bathroom_count)
     elif platform == "cohere":
-        response = textgen_model.generate_property_description_cohere(address)
+        response = textgen_model.generate_property_description_cohere(
+            address, amenities, bedroom_count, bathroom_count)
     return response
+
 
 description = """
 Stylish, modern, and chic, two-bedroom, two bath home located on the border of the SOMA, Mission, and Hayes Valley district!

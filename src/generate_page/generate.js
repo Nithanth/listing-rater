@@ -71,6 +71,7 @@ export default function Album () {
   const [amenities, setAmenities] = useState('')
   const [bathrooms, setBathrooms] = useState('')
   const [bedrooms, setBedrooms] = useState('')
+  const [generatedDescription, setGeneratedDescription] = useState('')
 
   const handleChangeBath = (event: SelectChangeEvent) => {
     setBathrooms(event.target.value)
@@ -86,11 +87,31 @@ export default function Album () {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        address: address
+        address: address,
+        amenities: amenities,
+        bathroom_count: bathrooms,
+        bedroom_count: bedrooms
       })
-    }).then(() => {
-      console.log('new address posted')
     })
+      .then(response => {
+        console.log('response', response)
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+        return response.json()
+      })
+      .then(data => {
+        console.log('data received', data)
+        setGeneratedDescription(data)
+        console.log(generatedDescription)
+        if (!data && !data.result) {
+          throw new Error('Response data is not valid')
+        }
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.error(error)
+      })
   }
 
   return (
@@ -161,11 +182,7 @@ export default function Album () {
                 />
               </Container>
               <Container sx={{ pt: 5 }}>
-                <Stack
-                  direction='row'
-                  spacing={2}
-                  justifyContent='center'
-                >
+                <Stack direction='row' spacing={2} justifyContent='center'>
                   <FormControl>
                     <InputLabel id='demo-simple-select-label'>
                       Bedroom Count
@@ -212,7 +229,7 @@ export default function Album () {
                   </FormControl>
                 </Stack>
               </Container>
-              <Container sx={{pt:5}}>
+              <Container sx={{ pt: 5 }}>
                 <Typography
                   component='h1'
                   variant='h4'
@@ -257,6 +274,19 @@ export default function Album () {
                   </ThemeProvider>
                 </div>
               </Container>
+            </Container>
+            <Container
+              sx={{
+                bgcolor: '#fff8e7',
+                pt: 6,
+                pb: 0,
+                pl: 0,
+                pr: 0
+              }}
+            >
+              <Box sx={{border: '1px solid black',padding:'20px' }} >
+                <div>{generatedDescription} </div>
+              </Box>
             </Container>
           </Box>
         </body>

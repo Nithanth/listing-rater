@@ -10,37 +10,40 @@ from collections import Counter
 
 # Scan description for proper nouns to see if host listed restaurants / attractions in the area and rough distance estimates
 # If can't find distances, add a recommendation to user
+
+
 def find_nearby_attractions(description):
 
     # look around current word index within 10 words for any quantitative indication of distances
     # check for "minute", "min", "hour", "hour", "hr" "mi", "miles"
-    def find_proximity_indicators(tokens,idx):
-        proximityIndicators = ['minute','min','mins','minutes','hour','hours','hr','mi','mile','miles','block','blocks']
+    def find_proximity_indicators(tokens, idx):
+        proximityIndicators = ['minute', 'min', 'mins', 'minutes',
+                               'hour', 'hours', 'hr', 'mi', 'mile', 'miles', 'block', 'blocks']
 
-        start = min(0,idx-10)
-        end = min(len(tokens),idx+10)
+        start = min(0, idx-10)
+        end = min(len(tokens), idx+10)
         tokens = tokens[start:end]
         for token in tokens:
-            target = token.replace('.','')
-            target = token.replace(',','')
-            target = token.replace('!','')
+            target = token.replace('.', '')
+            target = token.replace(',', '')
+            target = token.replace('!', '')
             if target in proximityIndicators:
                 return True
-        
+
         return False
 
     # tokens is array containing each word / punctuation in separate index
     tokens = nltk.word_tokenize(description)
     tags = nltk.pos_tag(tokens)
-    counts = Counter( tag for word,  tag in tags)
+    counts = Counter(tag for word,  tag in tags)
 
-    singular,plural = counts['NNP'],counts['NNPS']
+    singular, plural = counts['NNP'], counts['NNPS']
     proper_nouns = singular + plural
 
     # following result will be returned to masterchecks
     # if result[0] is True, user was specific mentioned amenities
     # if result[1] is True, that means user informed guests of distances to amenities well
-    result = [False,False]
+    result = [False, False]
 
     # make better condition for this later
     if proper_nouns > 7:
@@ -48,18 +51,18 @@ def find_nearby_attractions(description):
 
     denom = 0.0
     count = 0.0
-    for idx,word in enumerate(tags):
+    for idx, word in enumerate(tags):
         if word[1] == 'NNP' or word[1] == 'NNPS':
             denom += 1.0
-            if find_proximity_indicators(tokens,idx):
+            if find_proximity_indicators(tokens, idx):
                 count += 1.0
     if denom > 0 and count / denom > .5:
         result[1] = True
-    
+
     return result
 
 
-# test with following 
+# test with following
 #
 # description = """
 # Stylish, modern, and chic, two-bedroom, two bath home located on the border of the SOMA, Mission, and Hayes Valley district!

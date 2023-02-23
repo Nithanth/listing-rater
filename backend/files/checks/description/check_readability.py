@@ -28,6 +28,7 @@ nltk.download('cmudict')
 #     return score
 d = nltk.corpus.cmudict.dict()
 
+
 def count_syllables(word):
     # d = cmudict.dict()
     try:
@@ -35,6 +36,7 @@ def count_syllables(word):
     except KeyError:
         # if word not found in cmudict, assume it has one syllable
         return 1
+
 
 def flesch_kincaid_readability(text):
     words = word_tokenize(text)
@@ -48,9 +50,11 @@ def flesch_kincaid_readability(text):
         syllable_count += count_syllables(word)
 
     # calculate readability using Flesch-Kincaid formula
-    flesch_score = 206.835 - 1.015 * (word_count / sentence_count) - 84.6 * (syllable_count / word_count)
+    flesch_score = 206.835 - 1.015 * \
+        (word_count / sentence_count) - 84.6 * (syllable_count / word_count)
 
     return flesch_score
+
 
 def ease(score):
     if score >= 90:
@@ -67,6 +71,7 @@ def ease(score):
         return 'difficult'
     else:
         return 'very_confusing'
+
 
 def test():
     text = "The quick brown fox jumps over the lazy dog. She sells seashells by the seashore."
