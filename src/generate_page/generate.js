@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import * as React from 'react'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import Grid from '@mui/material/Grid'
@@ -10,6 +11,10 @@ import Link from '@mui/material/Link'
 import TextField from '@mui/material/TextField'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { Link as RouterLink } from 'react-router-dom'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
 
 function Copyright () {
   return (
@@ -63,6 +68,18 @@ const page_theme = createTheme({
 
 export default function Album () {
   const [address, setAddress] = useState('')
+  const [amenities, setAmenities] = useState('')
+  const [bathrooms, setBathrooms] = useState('')
+  const [bedrooms, setBedrooms] = useState('')
+
+  const handleChangeBath = (event: SelectChangeEvent) => {
+    setBathrooms(event.target.value)
+  }
+
+  const handleChangeBed = (event: SelectChangeEvent) => {
+    setBedrooms(event.target.value)
+  }
+
   const handleSubmit = e => {
     e.preventDefault()
     fetch('/generate', {
@@ -101,15 +118,6 @@ export default function Album () {
               >
                 Let us generate you a description!
               </Typography>
-              <Typography
-                component='h1'
-                variant='h4'
-                align='center'
-                color='text.secondary'
-                gutterBottom
-              >
-                Enter your address below.
-              </Typography>
             </Container>
             <Container maxWidth='me'>
               <Stack
@@ -131,6 +139,15 @@ export default function Album () {
           >
             <Container maxWidth='me'>
               <Container>
+                <Typography
+                  component='h1'
+                  variant='h4'
+                  align='center'
+                  color='text.secondary'
+                  gutterBottom
+                >
+                  Address
+                </Typography>
                 <TextField
                   id='full-width-text-field'
                   type='search'
@@ -140,6 +157,80 @@ export default function Album () {
                   maxWidth='lg'
                   value={address}
                   onChange={e => setAddress(e.target.value)}
+                  style={{ width: 600 }}
+                />
+              </Container>
+              <Container sx={{ pt: 5 }}>
+                <Stack
+                  direction='row'
+                  spacing={2}
+                  justifyContent='center'
+                >
+                  <FormControl>
+                    <InputLabel id='demo-simple-select-label'>
+                      Bedroom Count
+                    </InputLabel>
+                    <Select
+                      labelId='demo-simple-select-label'
+                      id='demo-simple-select'
+                      value={bedrooms}
+                      label='bedrooms'
+                      onChange={handleChangeBed}
+                      style={{ width: 200 }}
+                    >
+                      <MenuItem value={1}>1</MenuItem>
+                      <MenuItem value={2}>2</MenuItem>
+                      <MenuItem value={3}>3</MenuItem>
+                      <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={5}>5</MenuItem>
+                      <MenuItem value={6}>6</MenuItem>
+                      <MenuItem value={7}>7</MenuItem>
+                      <MenuItem value={8}>8</MenuItem>
+                      <MenuItem value={9}>9</MenuItem>
+                      <MenuItem value={10}>10</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <FormControl>
+                    <InputLabel id='demo-simple-select-label'>
+                      Bathroom Count
+                    </InputLabel>
+                    <Select
+                      labelId='demo-simple-select-label'
+                      id='demo-simple-select'
+                      value={bathrooms}
+                      label='bathrooms'
+                      onChange={handleChangeBath}
+                      style={{ width: 200 }}
+                    >
+                      <MenuItem value={1}>1</MenuItem>
+                      <MenuItem value={2}>2</MenuItem>
+                      <MenuItem value={3}>3</MenuItem>
+                      <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={5}>5</MenuItem>
+                      <MenuItem value={6}>6</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Stack>
+              </Container>
+              <Container sx={{pt:5}}>
+                <Typography
+                  component='h1'
+                  variant='h4'
+                  align='center'
+                  color='text.secondary'
+                  gutterBottom
+                >
+                  Amenities
+                </Typography>
+                <TextField
+                  id='full-width-text-field'
+                  type='search'
+                  variant='filled'
+                  multiline
+                  rows={5}
+                  maxWidth='lg'
+                  value={amenities}
+                  onChange={e => setAmenities(e.target.value)}
                   style={{ width: 600 }}
                 />
               </Container>
@@ -159,8 +250,9 @@ export default function Album () {
                       onClick={handleSubmit}
                       size='large'
                       sx={{ border: 1.5 }}
+                      style={{ textTransform: 'none' }}
                     >
-                      Generate description
+                      Generate Description
                     </Button>
                   </ThemeProvider>
                 </div>

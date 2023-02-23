@@ -21,7 +21,8 @@ amenities = [
     "wifi",
     "wi-fi",
     "pergola",
-    
+    "balcony",
+    "coffee"
 ]
 phrase_dict = {
     "swimming":"swimming pool",

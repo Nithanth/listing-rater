@@ -25,7 +25,10 @@ def evaluate_description():
 @app.route("/generate",methods=["POST"])
 def generate_description():
     address = request.json['address']
-    platform = request.json['platform']
+    bedroom_count = request.json['bedroom_count']
+    bathroom_count = request.json['bathroom_count']
+    # amenities = request.json['amenities']
+    platform = 'openai'
     generated_description = master.auto_generate(platform, address)
     response = [generated_description]
     return response

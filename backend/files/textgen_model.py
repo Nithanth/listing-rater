@@ -31,7 +31,7 @@ def generate_property_description_cohere(address):
     MODEL = 'command-xlarge-nightly'
     co = cohere.Client(COHERE_API_KEY)
     # co_prompt=f"Write an Airbnb-like description that describes the property and amenties really well to customers for this address: {address}"
-    imagery_prompt = f"Give me 5 examples of imagery to describe the beauty of the area that the following address is in, limit each example to 25 words. The address of the area is: {address}"
+    imagery_prompt = f"I am writing an AirBNB description for a property located in: {address}. Give me a paragraph to describe the beauty of the surrounding area to potential short-term rental guests. Use vivid imagery and location-specific word choice. Do not describe the amenities of a specific property."
     # amenity_prompt = f"Give me a cool way to describe : {address}"
     response = co.generate(  
         model=MODEL,  
@@ -43,6 +43,7 @@ def generate_property_description_cohere(address):
 
 
 # address = input("Enter an address: ")
-# property_description = generate_property_description_cohere(address)
-# print("Description of the property:")
-# print(property_description)
+address = input("Enter a location: ")
+property_description = generate_property_description_openai(address)
+print("Description of the property:")
+print(property_description)

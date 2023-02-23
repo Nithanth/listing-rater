@@ -20,6 +20,7 @@ function App() {
             <Route exact path='/' element={<Landing/>}/>
             <Route exact path='/description' element={<DescriptionPage/>}/>
             <Route exact path='/images' element={<ImagePage/>}/>
+            <Route exact path='/generate' element={<Generate/>}/>
           </Routes>
         </div>
       </div>
