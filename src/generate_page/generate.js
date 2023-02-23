@@ -284,9 +284,11 @@ export default function Album () {
                 pr: 0
               }}
             >
-              <Box sx={{border: '1px solid black',padding:'20px' }} >
-                <div>{generatedDescription} </div>
-              </Box>
+              {generatedDescription && (
+                <Box sx={{ border: '1px solid black', padding: '20px' }}>
+                  <div>{generatedDescription} </div>
+                </Box>
+              )}
             </Container>
           </Box>
         </body>
