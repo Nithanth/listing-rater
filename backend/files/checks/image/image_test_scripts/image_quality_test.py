@@ -3,8 +3,8 @@ import numpy as np
 import pandas as pd
 from skimage.metrics import structural_similarity as ssim
 from skimage.color import rgb2gray
-import tensorflow as tf
-import tensorflow_hub as hub
+# import tensorflow as tf
+# import tensorflow_hub as hub
 import os
 
 
@@ -28,11 +28,11 @@ def evaluate_image(image_path):
     
     # Calculate image content factor
     # Use a pre-trained deep learning model to calculate the content score
-    content_module_url = "https://tfhub.dev/google/imagenet/mobilenet_v2_100_224/feature_vector/5"
-    content_module = hub.load(content_module_url)
-    resized_image = tf.image.resize(img, (224, 224))
-    content_features = content_module(resized_image[np.newaxis, ...])
-    content_score = content_features.numpy().mean()
+    # content_module_url = "https://tfhub.dev/google/imagenet/mobilenet_v2_100_224/feature_vector/5"
+    # content_module = hub.load(content_module_url)
+    # resized_image = tf.image.resize(img, (224, 224))
+    # content_features = content_module(resized_image[np.newaxis, ...])
+    # content_score = content_features.numpy().mean()
     
     # Calculate distortion factor
     # Distortion score based on the difference between the vertical and horizontal edge lengths
