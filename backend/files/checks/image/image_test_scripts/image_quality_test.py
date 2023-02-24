@@ -67,12 +67,12 @@ def evaluate_image(image_path):
     lighting_threshold = 0.6
     
     # Classify image quality based on subscores
-    subscores = [ssim_score, lap_var, std_dev, brisque, content_score, distortion_score, lighting_score]
+    subscores = [ssim_score, lap_var, std_dev, brisque, distortion_score, lighting_score]
     thresholds = [ssim_threshold, lap_var_threshold, std_dev_threshold, brisque_threshold, content_threshold, distortion_threshold, lighting_threshold]
     subscore_results = ["good quality" if subscore >= threshold else "bad quality" for subscore, threshold in zip(subscores, thresholds)]
     
     # Combine the scores into a single metric
-    score = 0.2 * (1 - ssim_score) + 0.3 * (1 - lap_var/10000) + 0.1 * std_dev + 0.2 * brisque + 0.15 * content_score + 0.05 * distortion_score + 0.1 * lighting_score
+    score = 0.2 * (1 - ssim_score) + 0.3 * (1 - lap_var/10000) + 0.1 * std_dev + 0.35 * brisque + + 0.05 * distortion_score + 0.1 * lighting_score
     return score, all(x == 'good quality' for x in subscore_results), "good" if score>0.6 else "bad"
 
 image_data = []
