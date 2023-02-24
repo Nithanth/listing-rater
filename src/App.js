@@ -1,7 +1,7 @@
 import './App.css';
 import { Container } from '@mui/system';
 import { useState, useCallback } from 'react';
-import ResponsiveAppBar from './components/navigation/navigationbar';
+import ResponsiveAppBar from './components/Navigation/navigationbar.js';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Landing from './components/landing_page/landing';
 import Generate from './components/generate_page/generate';
