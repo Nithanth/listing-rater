@@ -115,18 +115,11 @@ export default function Resources () {
                 align='center'
                 color='text.primary'
                 gutterBottom
+                fontSize='70px'
               >
-                Boost your AirBNB Listing
+                Resources
               </Typography>
             </Container>
-            <Typography
-              variant='h5'
-              align='center'
-              color='text.secondary'
-              paragraph
-            >
-              Hosts have spent years procuring the best SEO practices
-            </Typography>
             {'\n'}
             <Typography
               variant='h5'
@@ -134,47 +127,7 @@ export default function Resources () {
               color='text.secondary'
               paragraph
             >
-              Luckily for you, we put it all in one place.
             </Typography>
-            <Typography
-              variant='h5'
-              align='center'
-              color='text.secondary'
-              paragraph
-              sx={{ pt: 2 }}
-            >
-              If you want feedback on your listing:
-            </Typography>
-            <Stack
-              sx={{ pt: 4 }}
-              direction='row'
-              spacing={2}
-              justifyContent='center'
-            >
-              <RouterLink
-                to={'/description'}
-                style={{ textDecoration: 'none' }}
-              >
-                <Button
-                  variant='contained'
-                  size='large'
-                  autoCapitalize='false'
-                  style={{ textTransform: 'none', fontSize: '20px' }}
-                >
-                  Optimize Description
-                </Button>
-              </RouterLink>
-              <RouterLink to={'/images'} style={{ textDecoration: 'none' }}>
-                <Button
-                  variant='contained'
-                  size='large'
-                  autoCapitalize='false'
-                  style={{ textTransform: 'none', fontSize: '20px' }}
-                >
-                  Optimize Images
-                </Button>
-              </RouterLink>
-            </Stack>
           </Box>
           <Box
             sx={{

@@ -1,14 +1,14 @@
 import './App.css';
 import { Container } from '@mui/system';
 import { useState, useCallback } from 'react';
-import ResponsiveAppBar from './components/Navigation/navigationbar';
+import ResponsiveAppBar from './components/navigation/navigationbar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Landing from './landing/landing';
-import Generate from './generate_page/generate';
-import DescriptionPage from './description_page/description_page';
-import ImagePage from './image_page/image_page';
-import Results from './results_page/results';
-import Resources from './resources_page/resources_page';
+import Landing from './components/landing_page/landing';
+import Generate from './components/generate_page/generate';
+import DescriptionPage from './components/description_page/description_page';
+import ImagePage from './components/image_page/image_page';
+import Results from './components/results_page/results';
+import Resources from './components/resources_page/resources_page';
 
 function App() {
 
