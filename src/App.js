@@ -8,6 +8,7 @@ import Generate from './generate_page/generate';
 import DescriptionPage from './description_page/description_page';
 import ImagePage from './image_page/image_page';
 import Results from './results_page/results';
+import Resources from './resources_page/resources_page';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
             <Route exact path='/description' element={<DescriptionPage/>}/>
             <Route exact path='/images' element={<ImagePage/>}/>
             <Route exact path='/generate' element={<Generate/>}/>
+            <Route exact path='/resources' element={<Resources/>}/>
           </Routes>
         </div>
       </div>
