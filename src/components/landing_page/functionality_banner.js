@@ -19,7 +19,7 @@ function functionality_banner () {
         paragraph
         sx={{ pt: 2 }}
       >
-        Our AI-driven engine optimizes descriptions based on
+        Our AI-driven engine optimizes listings based on
       </Typography>
 
       <Stack
