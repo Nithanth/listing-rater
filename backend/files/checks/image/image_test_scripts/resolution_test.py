@@ -13,6 +13,6 @@ def is_airbnb_photo_valid(photo_path):
 
     # Check the photo aspect ratio
     aspect_ratio = width / height
-    if abs(aspect_ratio - 3/2) > 0.1:
+    if abs(aspect_ratio - 3/2) > 0.2:
         return False
     return True
