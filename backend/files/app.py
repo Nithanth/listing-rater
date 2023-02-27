@@ -1,9 +1,59 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from datetime import datetime
+from flask_sqlalchemy import SQLAlchemy
 import master
 
 app = Flask(__name__)
 cors = CORS(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+db = SQLAlchemy(app)
+
+class Data(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    address = db.Column(db.String(200), nullable=False)
+    bathroom_count = db.Column(db.Float(3), nullable=False)
+    bedroom_count = db.Column(db.Float(3), nullable=False)
+    amenities = db.Column(db.String, nullable=False)
+    result = db.Column(db.String, nullable=False)
+
+with app.app_context():
+    db.create_all()
+
+@app.route("/generate", methods=["POST"])
+def generate_description():
+    address = request.json['address']
+    amenities = request.json['amenities']
+    bedroom_count = request.json['bedroom_count']
+    bathroom_count = request.json['bathroom_count']
+    platform = 'openai'
+
+    # generate description
+    # generated_description = master.generate_description(
+    #     platform, address, amenities, bedroom_count, bathroom_count)
+    generated_description = "testRESULT"
+    print(generated_description)
+
+    # commit input and response data to database
+    data_entry = Data(address=address,bedroom_count=bedroom_count,bathroom_count=bathroom_count,amenities=amenities,result=generated_description)
+    db.session.add(data_entry)
+    db.session.commit()
+
+    with app.app_context():
+        entries = Data.query.all()
+        for entry in entries:
+            print(f"---- DB ENTRY ----")
+            print(f"Address: {entry.timestamp}")
+            print(f"Address: {entry.address}")
+            print(f"Bedroom count: {entry.bedroom_count}")
+            print(f"Bathroom count: {entry.bathroom_count}")
+            print(f"Amenities: {entry.amenities}")
+            print(f"Result: {entry.result}")
+
+    # return response
+    response = [generated_description]
+    return response
 
 
 @app.route("/evaluate_images", methods=["POST"])
@@ -25,24 +75,8 @@ def evaluate_description():
     return response
 
 
-@app.route("/generate", methods=["POST"])
-def generate_description():
-    address = request.json['address']
-    amenities = request.json['amenities']
-    bedroom_count = request.json['bedroom_count']
-    bathroom_count = request.json['bathroom_count']
-    platform = 'openai'
-    generated_description = master.generate_description(
-        platform, address, amenities, bedroom_count, bathroom_count)
-#     generated_description = """
-# About this space
-# Enjoy a luxe all-suite layout, a sleek full kitchen, and stunning Gulf views on your private covered balcony! As part of the Origin Beach Resort, this modern 1BR retreat that sleeps 6 features outdoor pool and hot tub, fitness center, game room and a very large common area observation deck with breathtaking gulf views. This BEAUTIFULLY RENOVATED / 1 bed 1 bath condo has been completely renovated to meet the upscale taste of the owner. Renovations include: Refurbished kitchen cabinets with new hardware, completely renovated bathroom with a walk-in tiled shower and double sink vanity, wood look tile throughout the main living area and master bedroom, freshly painted, upgraded furniture, new hot water heater in 2021 and is an ABSOLUTE MUST SEE!!. Origin at Seahaven has unsurpassed amenities which include a gulf view pool & hot tub, sunrise and sunset observation decks, grilling & gathering decks, fitness room, movie theater and game room. Origins FANTASTIC beach location is steps to Pier Park, shopping and dining
-# Other things to note Please be aware that there will be NO refunds for Wifi issues as it’s not guaranteed at the beach. If reliable wifi is a must you are welcome to bring your own internet hotspot.
-#     """
-    print(generated_description)
-    response = [generated_description]
-    return response
 
 
 if __name__ == "__main__":
+    db.create_all()
     app.run()
