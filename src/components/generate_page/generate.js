@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import * as React from 'react'
 import Button from '@mui/material/Button'
+import CircularProgress from '@mui/material/CircularProgress'
 import CssBaseline from '@mui/material/CssBaseline'
 import Grid from '@mui/material/Grid'
 import Stack from '@mui/material/Stack'
@@ -15,6 +16,15 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
+
+function LoadingButton (props) {
+  return (
+    <Button {...props} disabled>
+      {props.label}
+      <CircularProgress size={24} sx={{ ml: 1 }} />
+    </Button>
+  )
+}
 
 function Copyright () {
   return (
@@ -71,6 +81,7 @@ export default function Album () {
   const [amenities, setAmenities] = useState('')
   const [bathrooms, setBathrooms] = useState('')
   const [bedrooms, setBedrooms] = useState('')
+  const [isLoading, setLoading] = useState(false)
   const [generatedDescription, setGeneratedDescription] = useState('')
 
   const handleChangeBath = (event: SelectChangeEvent) => {
@@ -83,6 +94,7 @@ export default function Album () {
 
   const handleSubmit = e => {
     e.preventDefault()
+    setLoading(true)
     fetch('/generate', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
@@ -102,6 +114,7 @@ export default function Album () {
       })
       .then(data => {
         console.log('data received', data)
+        setLoading(false)
         setGeneratedDescription(data)
         console.log(generatedDescription)
         if (!data && !data.result) {
@@ -284,10 +297,14 @@ export default function Album () {
                 pr: 0
               }}
             >
-              {generatedDescription && (
-                <Box sx={{ border: '1px solid black', padding: '20px' }}>
-                  <div>{generatedDescription} </div>
-                </Box>
+              {isLoading ? (
+                <CircularProgress></CircularProgress>
+              ) : (
+                generatedDescription && (
+                  <Box sx={{ border: '1px solid black', padding: '20px' }}>
+                    <div>{generatedDescription}</div>
+                  </Box>
+                )
               )}
             </Container>
           </Box>
