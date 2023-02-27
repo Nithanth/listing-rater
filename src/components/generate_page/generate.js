@@ -84,11 +84,19 @@ export default function Album () {
   const [isLoading, setLoading] = useState(false)
   const [generatedDescription, setGeneratedDescription] = useState('')
 
-  const handleChangeBath = (event: SelectChangeEvent) => {
+  // const handleChangeBath = (event: SelectChangeEvent) => {
+  //   setBathrooms(event.target.value)
+  // }
+
+  const handleChangeBath = (event) => {
     setBathrooms(event.target.value)
   }
 
-  const handleChangeBed = (event: SelectChangeEvent) => {
+  // const handleChangeBed = (event: SelectChangeEvent) => {
+  //   setBedrooms(event.target.value)
+  // }
+
+  const handleChangeBed = (event) => {
     setBedrooms(event.target.value)
   }
 
