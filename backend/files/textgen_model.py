@@ -5,7 +5,6 @@ from secrets_vault import COHERE_API_KEY, OPENAI_API_KEY
 
 
 def generate_property_description_openai(address, amenities, bedroom_count, bathroom_count):
-    print("in function")
     print(address, amenities, bedroom_count, bathroom_count)
     MODEL = "text-davinci-003"
     openai.api_key = OPENAI_API_KEY

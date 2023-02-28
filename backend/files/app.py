@@ -30,9 +30,9 @@ def generate_description():
     platform = 'openai'
 
     # generate description
-    # generated_description = master.generate_description(
-    #     platform, address, amenities, bedroom_count, bathroom_count)
-    generated_description = "testRESULT"
+    generated_description = master.generate_description(
+        platform, address, amenities, bedroom_count, bathroom_count)
+    # generated_description = "testRESULT"
     print(generated_description)
 
     # commit input and response data to database
